@@ -1,3 +1,7 @@
 <template>
-  <div>Hello world</div>
+  <NuxtPage />
 </template>
+
+<style>
+@import url("assets/css/main.css");
+</style>
