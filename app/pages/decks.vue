@@ -37,13 +37,22 @@
   </main>
 </template>
 
-<style scoped>
-.img1 {
-  background:
-    linear-gradient(transparent, #2c6990),
-    url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpzOeFqbXC_Jbwq8MHlUsa_eccbSDzcu-Kjg&s");
-}
+<script lang="ts">
+export default defineNuxtComponent({
+  data: () => ({
+    decks: [] as globalThis.Deck[],
+  }),
 
+  async mounted() {
+    this.decks = await db.decks.toArray();
+    const imageUrl = URL.createObjectURL(this.decks[0]!.image as Blob);
+    document.querySelector(".img1")!.style.background =
+      `linear-gradient(transparent, #2c6990), url(${imageUrl})`;
+  },
+});
+</script>
+
+<style scoped>
 .img2 {
   background:
     linear-gradient(transparent, #2c6990),
