@@ -4,7 +4,7 @@
       <NuxtLink to="/decks" class="flex align-i-center">
         <backIcon class="w-28" />
       </NuxtLink>
-      <h1 class="m-0" font="w-800">Create Deck</h1>
+      <h1 class="m-0 color-green-one" font="w-800">Create Deck</h1>
     </nav>
     <div class="p-10-20">
       <form ref="form">
@@ -62,3 +62,9 @@ export default defineNuxtComponent({
   },
 });
 </script>
+
+<style scoped>
+nav {
+  --icon: var(--white-two);
+}
+</style>

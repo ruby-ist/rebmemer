@@ -1,17 +1,32 @@
-import type { Rule } from 'unocss';
+import type { Rule } from "unocss";
 
 export default [
-  [/^color-([\w-]+)$/, ([, color]: string[]) => {
-    return {
-      color: `var(--${color})`,
-    };
-  }],
+  [
+    /^color-([\w-]+)$/,
+    ([, color]: string[]) => {
+      return {
+        color: `var(--${color})`,
+      };
+    },
+  ],
 
-  [/^bg-color-([\w-]+)$/, ([, color]: string[]) => {
-    return {
-      'background-color': `var(--${color})`,
-    };
-  }],
+  [
+    /^bg-color-([\w-]+)$/,
+    ([, color]: string[]) => {
+      return {
+        "background-color": `var(--${color})`,
+      };
+    },
+  ],
 
-  ["no-bg", { background: 'none' }],
+  [
+    /^fill-([\w-]+)$/,
+    ([, color]: string[]) => {
+      return {
+        fill: `var(--${color})`,
+      };
+    },
+  ],
+
+  ["no-bg", { background: "none" }],
 ] as Rule[];
