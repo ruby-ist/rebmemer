@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400;500&family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap");
 
 :root,
 html,
@@ -17,6 +17,13 @@ body {
   background: linear-gradient(#232b5f, #2c6990);
   color: #65e8a2;
   font-family: "M PLUS Rounded 1c", sans-serif;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 * {

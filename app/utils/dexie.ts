@@ -3,9 +3,9 @@ import { Dexie, type EntityTable } from "dexie";
 interface Deck {
   id: number;
   name: string;
-  reversible: boolean;
+  description: string;
+  reversible?: boolean;
   cardsPerRound: number;
-  lastPracticedAt: number | null;
   image: Blob | null;
 }
 
