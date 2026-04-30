@@ -7,7 +7,9 @@
       </div>
     </div>
     <div class="flex column gap-6">
-      <h3 class="m-0 color-green-one" font="w-600">{{ deck.name }}</h3>
+      <NuxtLink :to="`/decks/${deck.id}`">
+        <h3 class="m-0 color-green-one" font="w-600">{{ deck.name }}</h3>
+      </NuxtLink>
       <div class="break-word" font="s-0.8rem w-500">
         {{ deck.description }}
       </div>
