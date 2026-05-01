@@ -6,11 +6,15 @@
     </div>
     <div class="flex row gap-4">
       <h4 class="m-0">Count:</h4>
-      <div>{{ 230 }}</div>
+      <div>{{ cardCount }}</div>
     </div>
     <div class="flex row gap-4">
       <h4 class="m-0">Last practiced:</h4>
-      <div>12 Mar, 2026 | 12:34</div>
+      <div>
+        {{
+          lastPracticedAt ? new Date(lastPracticedAt).toLocaleString() : "---"
+        }}
+      </div>
     </div>
   </div>
 </template>
@@ -20,6 +24,14 @@ export default defineNuxtComponent({
   props: {
     deck: {
       type: Object as PropType<Deck>,
+      required: true,
+    },
+    cardCount: {
+      type: Number,
+      required: true,
+    },
+    lastPracticedAt: {
+      type: [Number, null],
       required: true,
     },
   },

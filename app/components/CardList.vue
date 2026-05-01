@@ -1,23 +1,36 @@
 <template>
-  <div>
-    <div class="cards flex align-i-center just-c-space-between mb-8">
+  <div class="cards">
+    <div class="flex align-i-center just-c-space-between mb-8">
       <h2 class="m-0 color-cyan-one">Cards</h2>
       <NuxtLink :to="`/decks/${deck.id}/cards/new`">
         <PlusIcon class="w-36 pointer" />
       </NuxtLink>
     </div>
-    <div class="mb-20" font="w-500">
-      <label>Sort by&ensp;</label>
+    <div class="mb-20 flex align-i-center gap-8" font="w-500">
+      <label>Sort by</label>
       <select
         class="bg-color-blue-one p-4 color-cyan-one no-outline ta-center field-sizing-content"
         border="none rad-5"
         font="s-1rem w-500 f-default-font"
+        v-model="sortByKey"
       >
-        <option value="name">Alphabetic</option>
+        <option value="question">Question</option>
+        <option value="answer">Answer</option>
         <option value="familarity">Familarity</option>
-        <option value="last_practiced_at">Last Practiced</option>
-        <option value="created_at">Created Date</option>
+        <option v-if="deck.reversible" value="reverseFamilarity">
+          Reverse Familarity
+        </option>
+        <option value="lastReviewedAt">Last Practiced</option>
+        <option value="createdAt">Created Date</option>
       </select>
+      <button
+        @click="sortByAsc = !sortByAsc"
+        class="no-bg no-outline"
+        border="none"
+      >
+        <ascendingSortIcon class="w-24" v-if="sortByAsc" />
+        <descendingSortIcon class="w-24" v-else />
+      </button>
     </div>
     <div
       v-if="cards.length !== 0"
@@ -25,7 +38,7 @@
       border="2 solid color-cyan-one rad-16"
       font="s-1.1rem w-500"
     >
-      <Card v-for="card in cards" :key="card.id" :card="card" />
+      <Card v-for="card in sortedCards" :key="card.id" :card="card" />
     </div>
     <div
       v-else
@@ -45,20 +58,31 @@ export default defineNuxtComponent({
       type: Object as PropType<Deck>,
       required: true,
     },
+    cards: {
+      type: Array as PropType<Card[]>,
+      required: true,
+    },
   },
   data: () => ({
-    cards: [] as Card[],
+    sortByKey: "createdAt",
+    sortByAsc: true,
   }),
-  async beforeMount() {
-    this.cards = await this.fetchCards();
-  },
-  methods: {
-    async fetchCards() {
-      const cards = await db.cards
-        .where("deckId")
-        .equals(this.deck.id)
-        .toArray();
-      return cards;
+  computed: {
+    sortedCards(): Card[] {
+      return [...this.cards].sort((cardOne, cardTwo) => {
+        // @ts-expect-error
+        const valueOne = cardOne[this.sortByKey];
+        // @ts-expect-error
+        const valueTwo = cardTwo[this.sortByKey];
+
+        if (typeof valueOne === "string") {
+          return this.sortByAsc
+            ? valueOne.localeCompare(valueTwo)
+            : valueTwo.localeCompare(valueOne);
+        }
+
+        return this.sortByAsc ? valueOne - valueTwo : valueTwo - valueOne;
+      });
     },
   },
 });
