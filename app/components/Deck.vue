@@ -1,11 +1,13 @@
 <template>
   <div class="w-46p flex column gap-10">
-    <div ref="deckImage" class="w-100p h-200 bd-rad-10 relative">
-      <div class="absolute b-5p r-10p" font="w-600">
-        230
-        <!-- replace this with cards count -->
+    <NuxtLink :to="`/decks/${deck.id}`" class="color-white-two">
+      <div ref="deckImage" class="w-100p h-200 bd-rad-10 relative">
+        <div class="absolute b-5p r-10p" font="w-600">
+          230
+          <!-- replace this with cards count -->
+        </div>
       </div>
-    </div>
+    </NuxtLink>
     <div class="flex column gap-6">
       <NuxtLink :to="`/decks/${deck.id}`">
         <h3 class="m-0 color-green-one" font="w-600">{{ deck.name }}</h3>

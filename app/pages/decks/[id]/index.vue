@@ -6,20 +6,7 @@
       </NuxtLink>
       <h2 class="m-0 color-green-one" font="w-500">{{ deck.name }}</h2>
     </nav>
-    <div class="color-white-three p-4-0 flex column gap-8">
-      <div>
-        <h4 class="m-0">Description:</h4>
-        <div>{{ deck.description }}</div>
-      </div>
-      <div class="flex row gap-4">
-        <h4 class="m-0">Count:</h4>
-        <div>{{ 230 }}</div>
-      </div>
-      <div class="flex row gap-4">
-        <h4 class="m-0">Last practiced:</h4>
-        <div>12 Mar, 2026 | 12:34</div>
-      </div>
-    </div>
+    <AboutDeck :deck="deck" />
     <div class="m-20-0">
       <Button
         class="bg-color-green-one color-indigo-one w-100p p-8 pointer"
@@ -29,6 +16,10 @@
         Practice
       </Button>
     </div>
+    <div class="flex just-c-center w-100p m-30-0-20">
+      <div class="bg-color-green-two h-1 w-50p"></div>
+    </div>
+    <CardList />
   </main>
 </template>
 
