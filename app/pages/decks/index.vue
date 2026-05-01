@@ -1,9 +1,9 @@
 <template>
   <main>
-    <nav class="p-14-20">
+    <nav class="p-14-0">
       <h1 class="m-0 color-green-one" font="w-800">Decks</h1>
     </nav>
-    <div class="p-10-20-100 flex wrap row gap-20-8p">
+    <div class="p-10-0-100 flex wrap row gap-20-8p">
       <Deck v-for="deck in decks" :key="deck.id" :deck="deck" />
     </div>
     <AddDeckButton />

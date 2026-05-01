@@ -1,5 +1,5 @@
 <template>
-  <main v-if="deck" class="p-0-20">
+  <main v-if="deck">
     <nav class="p-14-0 flex align-i-center gap-6">
       <NuxtLink to="/decks" class="flex align-i-center">
         <backIcon class="w-24" />
@@ -8,18 +8,18 @@
     </nav>
     <AboutDeck :deck="deck" />
     <div class="m-20-0">
-      <Button
+      <button
         class="bg-color-green-one color-indigo-one w-100p p-8 pointer"
         border="none rad-10"
         font="s-1.5rem w-600 f-default-font"
       >
         Practice
-      </Button>
+      </button>
     </div>
     <div class="flex just-c-center w-100p m-30-0-20">
       <div class="bg-color-green-two h-1 w-50p"></div>
     </div>
-    <CardList />
+    <CardList :deck="deck" />
   </main>
 </template>
 
@@ -29,8 +29,8 @@ export default defineNuxtComponent({
     deck: null as null | Deck,
   }),
   async beforeMount() {
-    const id = parseInt(this.$route.params.id as string);
-    this.deck = (await db.decks.get(id)) as Deck;
+    const deckId = parseInt(this.$route.params.deckId as string);
+    this.deck = (await db.decks.get(deckId)) as Deck;
   },
 });
 </script>

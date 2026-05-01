@@ -86,6 +86,13 @@ export default [
 
   ["max-needed-width", { width: "max-content" }],
 
+  [
+    /^field-sizing-(fixed|content)$/,
+    ([, value]) => ({
+      "field-sizing": value,
+    }),
+  ],
+
   // Outline rules
   ["no-outline", { outline: "none" }],
 
