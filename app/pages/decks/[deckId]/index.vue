@@ -17,14 +17,18 @@
           border="1 solid color-cyan-one rad-10"
           font="s-1.2rem"
         >
-          <div class="flex align-i-center gap-8">
+          <NuxtLink
+            :to="`/decks/${deck.id}/edit`"
+            class="flex align-i-center gap-8"
+          >
             <editIcon class="w-18" />
             <span class="color-green-two">Edit Deck</span>
-          </div>
-          <div class="flex align-i-center gap-8">
+          </NuxtLink>
+
+          <a class="flex align-i-center gap-8" @click="deleteDeck">
             <trashIcon class="w-18" />
-            <span class="color-green-two">Delete Deck</span>
-          </div>
+            <span class="color-green-two">Delete Deck </span>
+          </a>
           <div class="flex align-i-center gap-8">
             <flipIcon class="w-18" />
             <span class="color-green-two">Flip the cards</span>
@@ -79,6 +83,23 @@ export default defineNuxtComponent({
         !(this.$refs.menuDiv as HTMLElement)?.contains(e.target as HTMLElement)
       )
         this.showMenu = false;
+    },
+
+    deleteDeck() {
+      if (
+        confirm(
+          "Deck and all its cards will be permanently deleted. Are you sure?",
+        )
+      )
+        db.cards
+          .where("deckId")
+          .equals(this.deck!.id)
+          .delete()
+          .then(() => {
+            db.decks.delete(this.deck!.id).then(() => {
+              navigateTo("/decks");
+            });
+          });
     },
   },
 });
