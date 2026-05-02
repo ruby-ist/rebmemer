@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import unoConfig from "./unocss/uno.config";
+
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   components: [
@@ -11,4 +13,5 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ["@unocss/nuxt"],
   ssr: false,
+  unocss: unoConfig,
 });

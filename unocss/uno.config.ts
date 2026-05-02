@@ -4,15 +4,15 @@ import {
   presetMini,
   presetAttributify,
 } from "unocss";
-import boxRules from "./unocss/box.rules";
-import displayRules from "./unocss/display.rules";
-import positionRules from "./unocss/position.rules";
-import colorRules from "./unocss/color.rules";
-import typographyRules from "./unocss/typography.rules";
-import animationRules from "./unocss/animation.rules";
-import staticRules from "./unocss/static.rules";
-import listRules from "./unocss/list.rules";
-import tableRules from "./unocss/table.rules";
+import boxRules from "./box.rules";
+import displayRules from "./display.rules";
+import positionRules from "./position.rules";
+import colorRules from "./color.rules";
+import typographyRules from "./typography.rules";
+import animationRules from "./animation.rules";
+import staticRules from "./static.rules";
+import listRules from "./list.rules";
+import tableRules from "./table.rules";
 
 export default defineConfig({
   presets: [
@@ -48,7 +48,7 @@ export default defineConfig({
       if (!util.selector.includes(".strict\\:")) return;
 
       util.entries.forEach(([, val], i) => {
-        util.entries[i][1] = `${val} !important`;
+        util.entries[i]![1] = `${val} !important`;
       });
     },
   ],
