@@ -4,7 +4,6 @@ interface Deck {
   id: number;
   name: string;
   description: string;
-  reversible?: boolean;
   cardsPerRound: number;
   image: Blob | null;
 }

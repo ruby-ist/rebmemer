@@ -52,19 +52,6 @@
         </div>
 
         <div class="flex align-i-center gap-10">
-          <label for="reversible" class="color-white-two">
-            Enable reverse practice:
-          </label>
-
-          <input
-            type="checkbox"
-            id="reversible"
-            name="reversible"
-            class="bg-color-indigo-one pointer"
-          />
-        </div>
-
-        <div class="flex align-i-center gap-10">
           <label for="cardsPerMatch" class="color-white-two">
             Cards to practice per session:
           </label>
@@ -103,8 +90,6 @@ export default defineNuxtComponent({
       if (!formElement) return;
 
       const formData = Object.fromEntries(new FormData(formElement));
-      // @ts-expect-error
-      if (formData.reversible) formData.reversible = true;
       // @ts-expect-error
       db.decks.add(formData).then(() => {
         navigateTo("/decks");

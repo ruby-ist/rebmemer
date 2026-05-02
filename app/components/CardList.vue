@@ -17,9 +17,6 @@
         <option value="question">Question</option>
         <option value="answer">Answer</option>
         <option value="familarity">Familarity</option>
-        <option v-if="deck.reversible" value="reverseFamilarity">
-          Reverse Familarity
-        </option>
         <option value="lastReviewedAt">Last Practiced</option>
         <option value="createdAt">Created Date</option>
       </select>
