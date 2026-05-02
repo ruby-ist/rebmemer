@@ -11,7 +11,8 @@ body {
 }
 
 body {
-  background: linear-gradient(var(--indigo-one), var(--blue-one));
+  background:
+    linear-gradient(var(--indigo-one), var(--blue-one)), var(--blue-one);
   color: var(--white-two);
   font-family: var(--default-font);
 

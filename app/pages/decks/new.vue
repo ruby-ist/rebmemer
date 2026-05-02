@@ -4,7 +4,7 @@
       <NuxtLink to="/decks" class="flex align-i-center">
         <backIcon class="w-24" />
       </NuxtLink>
-      <h2 class="m-0 color-green-one" font="w-500">New Deck</h2>
+      <h2 class="m-0 color-green-one" font="w-600">New Deck</h2>
     </nav>
     <div class="p-10-0">
       <form ref="form" class="flex column gap-20" font="s-1.15rem">

@@ -8,9 +8,9 @@
       <h4 class="m-0">Count:</h4>
       <div>{{ cardCount }}</div>
     </div>
-    <div class="flex row gap-4">
+    <div class="flex row gap-4 align-i-center">
       <h4 class="m-0">Last practiced:</h4>
-      <div>
+      <div class="mt-2" font="s-0.85rem">
         {{
           lastPracticedAt ? new Date(lastPracticedAt).toLocaleString() : "---"
         }}

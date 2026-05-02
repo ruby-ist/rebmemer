@@ -4,14 +4,14 @@
       <NuxtLink :to="`/decks/${deck.id}`" class="flex align-i-center">
         <backIcon class="w-24" />
       </NuxtLink>
-      <h2 class="m-0 color-green-one" font="w-500">New Card</h2>
+      <h2 class="m-0 color-green-one" font="w-600">New Card</h2>
     </nav>
     <div class="p-10-0">
       <form ref="form" class="flex column gap-20" font="s-1.15rem">
         <div>
           <label for="Deck" class="color-green-one"> Deck: </label>
           <div
-            class="inline-block bg-color-blue-one color-cyan-one p-4"
+            class="inline-block bg-color-blue-one color-green-two p-4-8"
             border="none rad-5"
             font="s-0.9rem w-500"
           >

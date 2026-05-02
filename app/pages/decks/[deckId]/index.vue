@@ -1,10 +1,10 @@
 <template>
-  <main v-if="deck">
+  <main v-if="deck" class="pb-80">
     <nav class="p-14-0 flex align-i-center gap-6">
       <NuxtLink to="/decks" class="flex align-i-center">
         <backIcon class="w-24" />
       </NuxtLink>
-      <h2 class="m-0 color-green-one" font="w-500">{{ deck.name }}</h2>
+      <h2 class="m-0 color-green-one" font="w-600">{{ deck.name }}</h2>
     </nav>
     <AboutDeck
       :deck="deck"
@@ -21,7 +21,7 @@
       </button>
     </div>
     <div class="flex just-c-center w-100p m-30-0-20">
-      <div class="bg-color-green-two h-1 w-50p"></div>
+      <div class="bg-color-cyan-one h-1 w-50p"></div>
     </div>
     <CardList :deck="deck" :cards="cards" />
   </main>

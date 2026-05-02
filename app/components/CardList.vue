@@ -1,7 +1,7 @@
 <template>
   <div class="cards">
     <div class="flex align-i-center just-c-space-between mb-8">
-      <h2 class="m-0 color-cyan-one">Cards</h2>
+      <h2 class="m-0 color-green-two" font="w-500">Cards</h2>
       <NuxtLink :to="`/decks/${deck.id}/cards/new`">
         <PlusIcon class="w-36 pointer" />
       </NuxtLink>
@@ -9,7 +9,7 @@
     <div class="mb-20 flex align-i-center gap-8" font="w-500">
       <label>Sort by</label>
       <select
-        class="bg-color-blue-one p-4 color-cyan-one no-outline ta-center field-sizing-content"
+        class="bg-color-blue-one p-4 color-green-two no-outline ta-center field-sizing-content"
         border="none rad-5"
         font="s-1rem w-500 f-default-font"
         v-model="sortByKey"
@@ -34,11 +34,16 @@
     </div>
     <div
       v-if="cards.length !== 0"
-      class="bg-color-blue-one flex column p-0-16"
-      border="2 solid color-cyan-one rad-16"
+      class="flex column p-0-16"
+      border="1 solid color-cyan-one rad-16"
       font="s-1.1rem w-500"
     >
-      <Card v-for="card in sortedCards" :key="card.id" :card="card" />
+      <Card
+        v-for="card in sortedCards"
+        :key="card.id"
+        :card="card"
+        class="[&:last-child]:border-none"
+      />
     </div>
     <div
       v-else
@@ -90,6 +95,6 @@ export default defineNuxtComponent({
 
 <style scoped>
 .cards {
-  --icon: var(--cyan-one);
+  --icon: var(--green-two);
 }
 </style>
