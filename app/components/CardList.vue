@@ -1,17 +1,17 @@
 <template>
   <div class="cards">
     <div class="flex align-i-center just-c-space-between mb-8">
-      <h2 class="m-0 color-green-two" font="w-500">Cards</h2>
+      <h2 class="m-0 color-green-two" font="w-475">Cards</h2>
       <NuxtLink :to="`/decks/${deck.id}/cards/new`">
         <PlusIcon class="w-36 pointer" />
       </NuxtLink>
     </div>
-    <div class="mb-20 flex align-i-center gap-8" font="w-500">
+    <div class="mb-20 flex align-i-center gap-8" font="w-450">
       <label>Sort by</label>
       <select
         class="bg-color-blue-one p-4 color-green-two no-outline ta-center field-sizing-content"
         border="none rad-5"
-        font="s-1rem w-500 f-default-font"
+        font="s-1rem w-450 f-default-font"
         v-model="sortByKey"
       >
         <option value="question">Question</option>
@@ -47,9 +47,9 @@
     </div>
     <div
       v-else
-      class="bg-color-blue-one flex column p-16 ta-center"
+      class="bg-color-blue-one flex column p-24 ta-center"
       border="rad-16"
-      font="s-1.1rem w-500"
+      font="s-1.1rem"
     >
       No Cards Found!
     </div>

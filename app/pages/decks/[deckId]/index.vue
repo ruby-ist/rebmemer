@@ -1,10 +1,10 @@
 <template>
   <main v-if="deck" class="pb-80">
-    <nav class="p-14-0 flex align-i-center gap-6">
+    <nav class="p-18-0 flex align-i-center gap-6">
       <NuxtLink to="/decks" class="flex align-i-center">
         <backIcon class="w-24" />
       </NuxtLink>
-      <h2 class="m-0 color-green-one" font="w-600">{{ deck.name }}</h2>
+      <h2 class="m-0 color-green-one" font="w-560">{{ deck.name }}</h2>
     </nav>
     <AboutDeck
       :deck="deck"
@@ -13,9 +13,9 @@
     />
     <div class="m-20-0">
       <button
-        class="bg-color-green-one color-indigo-one w-100p p-8 pointer"
+        class="bg-color-green-one color-indigo-one w-100p p-10 pointer"
         border="none rad-10"
-        font="s-1.5rem w-600 f-default-font"
+        font="s-1.5rem w-475 f-default-font"
       >
         Practice
       </button>

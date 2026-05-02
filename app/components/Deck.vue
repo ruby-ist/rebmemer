@@ -7,16 +7,16 @@
         </div>
       </div>
     </NuxtLink>
-    <div class="flex column gap-6">
+    <div class="flex column gap-9">
       <NuxtLink :to="`/decks/${deck.id}`">
-        <h3 class="m-0 color-green-one" font="w-600">{{ deck.name }}</h3>
+        <h3 class="m-0 color-green-one" font="w-500">{{ deck.name }}</h3>
       </NuxtLink>
-      <div class="break-word" font="s-0.8rem w-500">
+      <div class="break-word" font="s-0.85rem w-400">
         {{ deck.description }}
       </div>
       <div class="timestamp flex align-i-center gap-4">
         <ClockIcon class="w-10" />
-        <div class="color-white-three" font="s-0.7rem">
+        <div class="color-white-three" font="s-0.75rem">
           {{
             lastPracticedAt ? new Date(lastPracticedAt).toLocaleString() : "---"
           }}

@@ -1,6 +1,6 @@
 <template>
   <main v-if="deck">
-    <nav class="p-14-0 flex align-i-center gap-6">
+    <nav class="p-18-0 flex align-i-center gap-6">
       <NuxtLink :to="`/decks/${deck.id}`" class="flex align-i-center">
         <backIcon class="w-24" />
       </NuxtLink>
@@ -8,8 +8,8 @@
     </nav>
     <div class="p-10-0">
       <form ref="form" class="flex column gap-20" font="s-1.15rem">
-        <div>
-          <label for="Deck" class="color-green-one"> Deck: </label>
+        <div class="flex align-i-center gap-8">
+          <label for="Deck" class="color-white-two"> Deck:</label>
           <div
             class="inline-block bg-color-blue-one color-green-two p-4-8"
             border="none rad-5"
@@ -19,31 +19,31 @@
           </div>
         </div>
         <div>
-          <label for="question" class="mb-10 block color-green-one">
+          <label for="question" class="mb-10 block color-white-two">
             Question:
           </label>
 
           <textarea
             id="question"
             name="question"
-            class="bg-color-blue-one [&:focus]:no-outline color-white-two p-8 w-100p h-144 box-size-border-box no-resize oflow-auto"
+            class="bg-color-blue-one [&:focus]:no-outline color-green-two p-12 w-100p h-144 box-size-border-box no-resize oflow-auto"
             border="1 solid color-cyan-one rad-10"
-            font="s-1.01rem f-default-font"
+            font="s-1.15rem w-425 f-default-font"
             autocomplete="off"
           />
         </div>
 
         <div>
-          <label for="answer" class="mb-10 block color-green-one">
+          <label for="answer" class="mb-10 block color-white-two">
             Answer:
           </label>
 
           <textarea
             id="answer"
             name="answer"
-            class="bg-color-blue-one [&:focus]:no-outline color-white-one p-8 w-100p h-144 box-size-border-box no-resize oflow-auto"
+            class="bg-color-blue-one [&:focus]:no-outline color-green-two p-12 w-100p h-144 box-size-border-box no-resize oflow-auto"
             border="1 solid color-cyan-one rad-10"
-            font="s-1.01rem f-default-font"
+            font="s-1.15rem w-425 f-default-font"
             autocomplete="off"
           />
         </div>
@@ -52,9 +52,9 @@
           <input
             type="submit"
             value="Create Card"
-            class="bg-color-green-two color-indigo-one p-6-24 pointer mt-28"
+            class="bg-color-green-two color-indigo-one p-12-24 pointer mt-28"
             border="1px solid color-indigo-one rad-10"
-            font="s-1.25rem w-500 f-default-font"
+            font="s-1.35rem w-475 f-default-font"
             @click="handleFormSubmission"
           />
         </div>
