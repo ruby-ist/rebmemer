@@ -8,7 +8,9 @@
     </nav>
     <div class="pt-20 flex column gap-28">
       <div class="ta-center" font="s-1.8rem">{{ currentCard.question }}</div>
+      <DrawingCanvas v-if="canva" />
       <div
+        v-else
         class="grid place-i-center bg-color-blue-one p-24-12 w-100p h-[calc(100vw-40px)] box-size-border-box oflow-auto"
         border="1 solid color-cyan-one rad-20"
         @click="($refs.answerInput as HTMLElement).focus()"
@@ -48,6 +50,7 @@ export default defineNuxtComponent({
     deck: null as null | Deck,
     currentCard: null as null | Card,
     answer: "",
+    canva: false,
   }),
   async beforeMount() {
     const deckId = parseInt(this.$route.params.deckId as string);
