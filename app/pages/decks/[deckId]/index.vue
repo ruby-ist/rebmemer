@@ -5,7 +5,7 @@
         <NuxtLink to="/decks" class="flex align-i-center">
           <backIcon class="w-24 pointer" />
         </NuxtLink>
-        <h2 class="m-0 color-green-one" font="w-560">{{ deck.name }}</h2>
+        <h1 class="m-0 color-green-one" font="w-555">{{ deck.name }}</h1>
       </div>
       <div ref="menuDiv">
         <button class="no-bg no-outline border-none" @click="showMenu = true">
@@ -13,9 +13,10 @@
         </button>
         <div
           v-show="showMenu"
-          class="absolute bg-color-blue-one p-16-14-20 flex column gap-20 r-0 t-18 pointer"
+          class="absolute bg-color-blue-one p-16-20-24 flex column gap-24 -r-0 t-18 pointer"
           border="1 solid color-cyan-one rad-10"
           font="s-1.2rem"
+          style="box-shadow: 0 0 100px 50px var(--indigo-one)"
         >
           <NuxtLink
             :to="`/decks/${deck.id}/edit`"
@@ -41,7 +42,7 @@
       :cardCount="cards.length"
       :lastPracticedAt="lastPracticedAt"
     />
-    <div class="m-20-0">
+    <NuxtLink :to="`/decks/${deck.id}/practice`" class="block m-20-0">
       <button
         class="bg-color-green-one color-indigo-one w-100p p-10 pointer"
         border="none rad-10"
@@ -49,7 +50,7 @@
       >
         Practice
       </button>
-    </div>
+    </NuxtLink>
     <div class="flex just-c-center w-100p m-30-0-20">
       <div class="bg-color-cyan-one h-1 w-50p"></div>
     </div>
@@ -88,7 +89,7 @@ export default defineNuxtComponent({
     deleteDeck() {
       if (
         confirm(
-          "Deck and all its cards will be permanently deleted. Are you sure?",
+          "Current deck and all of its cards will be permanently deleted. Are you sure?",
         )
       )
         db.cards

@@ -24,6 +24,7 @@
         @click="sortByAsc = !sortByAsc"
         class="no-bg no-outline"
         border="none"
+        style="--icon: var(--cyan-one)"
       >
         <ascendingSortIcon class="w-24" v-if="sortByAsc" />
         <descendingSortIcon class="w-24" v-else />

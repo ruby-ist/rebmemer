@@ -46,7 +46,9 @@
         >
           Browse...
         </button>
-        <span font="s-0.83rem">{{ (deck.image as File).name }}</span>
+        <span ref="fileName" font="s-0.83rem">{{
+          shrinkFileName((deck.image as File).name)
+        }}</span>
       </div>
       <input
         v-show="!deck.image || showFileInput"
@@ -127,6 +129,36 @@ export default defineNuxtComponent({
     checkImageAndAddId(deck: Deck) {
       if ((deck.image as File).name === "") deck.image = this.deck.image;
       deck.id = this.deck.id;
+    },
+
+    shrinkFileName(fileName: string, maxLength = 25) {
+      if (fileName.length <= maxLength) return fileName;
+
+      const extIndex = fileName.lastIndexOf(".");
+      const hasExtension = extIndex !== -1;
+
+      const extension = hasExtension ? fileName.slice(extIndex) : "";
+      const namePart = hasExtension ? fileName.slice(0, extIndex) : fileName;
+
+      const ellipsis = "...";
+
+      // Space left for name (excluding extension and ellipsis)
+      const available = maxLength - extension.length - ellipsis.length;
+
+      if (available <= 0) {
+        // fallback: just truncate brutally
+        return fileName.slice(0, maxLength - ellipsis.length) + ellipsis;
+      }
+
+      const front = Math.ceil(available / 2);
+      const back = Math.floor(available / 2);
+
+      return (
+        namePart.slice(0, front) +
+        ellipsis +
+        namePart.slice(namePart.length - back) +
+        extension
+      );
     },
   },
 });

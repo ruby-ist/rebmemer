@@ -11,7 +11,7 @@
         <div class="flex align-i-center gap-8">
           <label for="Deck" class="color-white-two"> Deck:</label>
           <div
-            class="inline-block bg-color-blue-one color-green-two p-4-8"
+            class="inline-block bg-color-blue-one color-green-one p-4-8"
             border="none rad-5"
             font="s-0.9rem w-500"
           >
