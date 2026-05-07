@@ -28,5 +28,14 @@ export default [
     },
   ],
 
+  [
+    /^icon-color-([\w-]+)$/,
+    ([, color]: string[]) => {
+      return {
+        "--icon": `var(--${color})`,
+      };
+    },
+  ],
+
   ["no-bg", { background: "none" }],
 ] as Rule[];

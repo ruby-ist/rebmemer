@@ -1,7 +1,7 @@
 <template>
   <canvas
     ref="canvas"
-    class="bg-color-blue-one p-24-12 w-100p h-[calc(100vw-40px)] box-size-border-box"
+    class="bg-color-blue-one p-24-12 -mb-4 w-100p h-[calc(100vw-40px)] box-size-border-box"
     border="1 solid color-cyan-one rad-20"
     @mousedown="startDrawing"
     @mousemove="draw"

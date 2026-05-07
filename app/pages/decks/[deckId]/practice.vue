@@ -1,6 +1,6 @@
 <template>
   <main v-if="deck && currentCard">
-    <nav class="p-18-0 flex align-i-center gap-6">
+    <nav class="p-18-0 flex align-i-center gap-6 icon-color-white-two">
       <NuxtLink :to="`/decks/${deck.id}`" class="flex align-i-center">
         <backIcon class="w-24" />
       </NuxtLink>
@@ -9,40 +9,32 @@
 
     <div class="pt-20 flex column gap-28">
       <div class="ta-center" font="s-1.8rem">{{ currentCard.question }}</div>
-      <DrawingCanvas v-if="canva" />
-      <div v-else class="relative">
-        <div v-show="showKeyboardDownButton" class="absolute r-16 t-12">
+      <div class="relative">
+        <DrawingCanvas v-if="canva" />
+        <EditableDivInput v-else />
+        <div class="absolute r-12 b-12 flex align-i-center">
           <button
-            class="new-line-button bg-color-green-two no-bg no-outline border-none pointer p-2-4"
-            border="rad-10"
-            @click="blurAnwerInput"
+            class="p-8 -mr-1 pointer"
+            :class="{
+              'no-bg icon-color-green-two': !canva,
+              'bg-color-green-two icon-color-blue-one': canva,
+            }"
+            border="2 solid color-green-two rad-8-0-0-8"
+            @click="canva = true"
           >
-            <keyboardDownIcon class="w-28 h-28" />
+            <scribbleIcon class="w-24 h-24" />
           </button>
-        </div>
-        <div
-          class="grid place-i-center bg-color-blue-one p-24-12 w-100p h-[calc(100vw-40px)] box-size-border-box oflow-auto"
-          border="1 solid color-cyan-one rad-20"
-          @click="($refs.answerInput as HTMLElement).focus()"
-        >
-          <div
-            contenteditable="true"
-            ref="answerInput"
-            class="ta-center [&:focus]:no-outline color-white-one min-h-1em min-w-1"
-            font="s-1.5rem w-425 f-default-font"
-            @keyup="
-              answer = ($refs.answerInput as HTMLElement).innerText.trim()
-            "
-            @blur="showKeyboardDownButton = false"
-            @focus="showKeyboardDownButton = true"
-          ></div>
-          <span
-            v-show="answer.length === 0"
-            class="absolute color-white-three z-0"
-            font="s-1.5rem"
+          <button
+            class="p-8 pointer"
+            :class="{
+              'no-bg icon-color-green-two': canva,
+              'bg-color-green-two icon-color-blue-one': !canva,
+            }"
+            border="2 solid color-green-two rad-0-8-8-0"
+            @click="canva = false"
           >
-            Type Here
-          </span>
+            <textInputIcon class="w-24 h-24" />
+          </button>
         </div>
       </div>
     </div>
@@ -63,9 +55,7 @@ export default defineNuxtComponent({
   data: () => ({
     deck: null as null | Deck,
     currentCard: null as null | Card,
-    answer: "",
     canva: false,
-    showKeyboardDownButton: false,
   }),
   async beforeMount() {
     const deckId = parseInt(this.$route.params.deckId as string);
@@ -77,21 +67,5 @@ export default defineNuxtComponent({
       .toArray();
     this.currentCard = cards[0] as Card;
   },
-  methods: {
-    blurAnwerInput() {
-      const answerInput = this.$refs.answerInput as HTMLElement;
-      answerInput.blur();
-    },
-  },
 });
 </script>
-
-<style scoped>
-nav {
-  --icon: var(--white-two);
-}
-
-.new-line-button {
-  --icon: var(--green-two);
-}
-</style>
