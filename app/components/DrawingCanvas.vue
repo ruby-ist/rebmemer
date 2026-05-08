@@ -1,16 +1,45 @@
 <template>
-  <canvas
-    ref="canvas"
-    class="bg-color-blue-one p-24-12 -mb-4 w-100p h-[calc(100vw-40px)] box-size-border-box"
-    border="1 solid color-cyan-one rad-20"
-    @mousedown="startDrawing"
-    @mousemove="draw"
-    @mouseup="stopDrawing"
-    @mouseleave="stopDrawing"
-    @touchstart.prevent="startDrawing"
-    @touchmove.prevent="draw"
-    @touchend="stopDrawing"
-  ></canvas>
+  <div>
+    <div
+      class="absolute t-12 l-12 flex align-i-center just-c-space-between w-[calc(100vw-64px)]"
+    >
+      <input
+        v-model="strokeWidth"
+        class="w-73ºººººp"
+        type="range"
+        min="1"
+        max="16"
+      />
+      <div class="flex gap-4">
+        <button
+          class="bg-color-green-two no-bg no-outline border-none pointer p-2-4 icon-color-green-two"
+          border="rad-10"
+          @click="undo"
+        >
+          <undoIcon class="w-28 h-28" />
+        </button>
+        <button
+          class="bg-color-green-two no-bg no-outline border-none pointer p-2-4 icon-color-green-two"
+          border="rad-10"
+          @click="clearCanvas"
+        >
+          <eraseIcon class="w-28 h-28" />
+        </button>
+      </div>
+    </div>
+    <canvas
+      ref="canvas"
+      class="bg-color-blue-one p-24-12 -mb-4 w-100p h-[calc(100vw-40px)] box-size-border-box"
+      border="1 solid color-cyan-one rad-20"
+      @mousedown="startDrawing"
+      @mousemove="draw"
+      @mouseup="stopDrawing"
+      @mouseleave="stopDrawing"
+      @touchstart.prevent="startDrawing"
+      @touchmove.prevent="draw"
+      @touchend="stopDrawing"
+    ></canvas>
+  </div>
 </template>
 
 <script lang="ts">
@@ -28,6 +57,7 @@ export default defineNuxtComponent({
     lastY: 0 as number,
     strokes: [] as Stroke[],
     currentStroke: [] as Stroke,
+    strokeWidth: 8,
   }),
   mounted() {
     const canvas = this.$refs.canvas as HTMLCanvasElement;
@@ -54,7 +84,7 @@ export default defineNuxtComponent({
 
       this.ctx.lineCap = "round";
       this.ctx.lineJoin = "round";
-      this.ctx.lineWidth = 8;
+      this.ctx.lineWidth = this.strokeWidth;
       this.ctx.strokeStyle = "#fff";
     },
 
@@ -127,6 +157,7 @@ export default defineNuxtComponent({
     clearCanvas() {
       const canvas = this.$refs.canvas as HTMLCanvasElement;
       if (!this.ctx) return;
+      this.strokes = [];
       this.ctx.clearRect(0, 0, canvas.width, canvas.height);
     },
 
@@ -152,6 +183,14 @@ export default defineNuxtComponent({
 
         this.ctx.stroke();
       }
+    },
+  },
+
+  watch: {
+    strokeWidth(value) {
+      if (!this.ctx) return;
+
+      this.ctx.lineWidth = value;
     },
   },
 });
