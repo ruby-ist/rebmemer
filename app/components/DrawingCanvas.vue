@@ -1,15 +1,20 @@
 <template>
   <div>
     <div
-      class="absolute t-12 l-12 flex align-i-center just-c-space-between w-[calc(100vw-64px)]"
+      class="absolute t-12 l-12 flex gap-8 align-i-center just-c-space-between w-[calc(100vw-64px)]"
     >
-      <input
-        v-model="strokeWidth"
-        class="w-73ºººººp"
-        type="range"
-        min="1"
-        max="16"
-      />
+      <div class="slider-wrapper relative grid place-i-center">
+        <div
+          class="slider-bro absolute bg-color-cyan-one h-16 w-[calc(100%-19px)]"
+        ></div>
+        <input
+          v-model="strokeWidth"
+          class="slider pointer relative z-1 w-100p"
+          type="range"
+          min="1"
+          max="16"
+        />
+      </div>
       <div class="flex gap-4">
         <button
           class="bg-color-green-two no-bg no-outline border-none pointer p-2-4 icon-color-green-two"
@@ -195,3 +200,41 @@ export default defineNuxtComponent({
   },
 });
 </script>
+
+<style scoped>
+.slider-wrapper {
+  width: -webkit-fill-available;
+}
+.slider-bro {
+  clip-path: shape(
+    from 0% calc(50% - 0.5px),
+    line to 100% 0%,
+    line to 100% 100%,
+    line to 0% calc(50% + 0.5px),
+    close
+  );
+}
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--white-one);
+    border: 1px solid var(--indigo-one);
+    border-radius: 50%;
+  }
+
+  &::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: var(--white-one);
+    border: 1px solid var(--indigo-one);
+    border-radius: 50%;
+  }
+}
+</style>
