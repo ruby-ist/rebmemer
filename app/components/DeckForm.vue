@@ -110,7 +110,6 @@ export default defineNuxtComponent({
 
       if (this.deck.id) {
         this.checkImageAndAddId(formData);
-        console.log(formData);
         await db.decks.put(formData);
         navigateTo(`/decks/${this.deck.id}`);
       } else {

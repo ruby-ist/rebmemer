@@ -1,12 +1,16 @@
 <template>
   <div>
-    <div v-show="showKeyboardDownButton" class="absolute r-16 t-12">
+    <div
+      v-show="showKeyboardDownButton"
+      ref="doneButton"
+      class="absolute r-12 t-12 flex align-i-center gap-4"
+    >
       <button
         class="bg-color-green-two no-bg no-outline border-none pointer p-2-4 icon-color-green-two"
         border="rad-10"
-        @click="blurAnwerInput"
+        @click="handleDone"
       >
-        <keyboardDownIcon class="w-28 h-28" />
+        <doneIcon class="w-32 h-32" />
       </button>
     </div>
     <div
@@ -20,7 +24,7 @@
         class="ta-center [&:focus]:no-outline color-white-one min-h-1em min-w-1"
         font="s-1.5rem w-425 f-default-font"
         @keyup="answer = ($refs.answerInput as HTMLElement).innerText.trim()"
-        @blur="showKeyboardDownButton = false"
+        @blur="handleBlur"
         @focus="showKeyboardDownButton = true"
       ></div>
       <span
@@ -36,14 +40,19 @@
 
 <script lang="ts">
 export default defineNuxtComponent({
+  emits: ["checkAnswer"],
   data: () => ({
     answer: "",
     showKeyboardDownButton: false,
   }),
   methods: {
-    blurAnwerInput() {
-      const answerInput = this.$refs.answerInput as HTMLElement;
-      answerInput.blur();
+    handleDone() {
+      this.$emit("checkAnswer");
+    },
+    handleBlur(e: Event) {
+      setTimeout(() => {
+        this.showKeyboardDownButton = false;
+      }, 100);
     },
   },
 });
