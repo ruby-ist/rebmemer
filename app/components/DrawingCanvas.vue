@@ -60,7 +60,7 @@ export default defineNuxtComponent({
     ctx: null as CanvasRenderingContext2D | null,
     lastX: 0 as number,
     lastY: 0 as number,
-    strokes: [] as Stroke[],
+    strokes: [] as [Stroke, number][],
     currentStroke: [] as Stroke,
     strokeWidth: 8,
   }),
@@ -149,7 +149,7 @@ export default defineNuxtComponent({
 
       this.isDrawing = false;
       if (this.currentStroke.length > 0) {
-        this.strokes.push(this.currentStroke);
+        this.strokes.push([this.currentStroke, this.strokeWidth]);
         // enforce history limit
         if (this.strokes.length > 10) {
           this.strokes.shift();
@@ -177,9 +177,10 @@ export default defineNuxtComponent({
       if (!this.ctx) return;
 
       this.ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (const stroke of this.strokes) {
+      for (const [stroke, strokeWidth] of this.strokes) {
         if (stroke.length === 0) continue;
         this.ctx.beginPath();
+        this.ctx.lineWidth = strokeWidth;
         this.ctx.moveTo(stroke[0]!.x, stroke[0]!.y);
 
         for (let i = 1; i < stroke.length; i++) {
@@ -188,6 +189,7 @@ export default defineNuxtComponent({
 
         this.ctx.stroke();
       }
+      this.ctx.lineWidth = this.strokeWidth;
     },
   },
 
