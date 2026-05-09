@@ -59,7 +59,7 @@
       class="absolute b-0 l-0 z-1 w-100vw p-40-20-60 bg-color-blue-two flex column align-i-center just-c-center gap-40 icon-color-indigo-one box-size-border-box"
       style="box-shadow: 0 0 50px -16px var(--green-one)"
       border-t="1 solid color-green-one"
-      border="rad-6"
+      border="rad-6-6-0-0"
     >
       <div font="s-2rem">
         {{ currentCard.answer }}
@@ -141,6 +141,15 @@ export default defineNuxtComponent({
         !doneButton?.contains(clickedElement)
       )
         this.reveal = false;
+    },
+  },
+  watch: {
+    reveal(value) {
+      if (value) {
+        document.body.classList.add("with-popup");
+      } else {
+        document.body.classList.remove("with-popup");
+      }
     },
   },
 });

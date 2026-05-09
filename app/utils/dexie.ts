@@ -16,6 +16,7 @@ interface Card {
   familarity: number;
   lastReviewedAt: number;
   reverseFamilarity: number;
+  lastReverseReviewedAt: number;
   deckId: number;
 }
 

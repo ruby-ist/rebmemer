@@ -27,6 +27,10 @@ body {
   &::-webkit-scrollbar {
     display: none;
   }
+
+  &.with-popup {
+    background-color: var(--blue-two);
+  }
 }
 
 * {
@@ -39,4 +43,9 @@ a {
 
 canvas {
   touch-action: none;
+}
+
+main {
+  min-height: 100vh;
+  box-sizing: border-box;
 }

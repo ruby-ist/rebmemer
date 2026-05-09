@@ -1,41 +1,32 @@
 <template>
   <main v-if="deck" @click="hideMenu" class="pb-80">
-    <nav class="p-18-0 flex just-c-space-between align-i-center relative">
+    <nav
+      class="p-18-0 flex just-c-space-between align-i-center relative icon-color-white-two"
+    >
       <div class="flex align-i-center gap-6">
         <NuxtLink to="/decks" class="flex align-i-center">
           <backIcon class="w-24 pointer" />
         </NuxtLink>
         <h1 class="m-0 color-green-one" font="w-555">{{ deck.name }}</h1>
       </div>
-      <div ref="menuDiv">
-        <button class="no-bg no-outline border-none" @click="showMenu = true">
-          <threeBarsIcon class="w-24 pointer" />
-        </button>
-        <div
-          v-show="showMenu"
-          class="absolute bg-color-blue-one p-16-20-24 flex column gap-24 -r-0 t-18 pointer"
-          border="1 solid color-cyan-one rad-10"
-          font="s-1.2rem"
-          style="box-shadow: 0 0 100px 50px var(--indigo-one)"
+      <Menu ref="menu">
+        <NuxtLink
+          :to="`/decks/${deck.id}/edit`"
+          class="flex align-i-center gap-8"
         >
-          <NuxtLink
-            :to="`/decks/${deck.id}/edit`"
-            class="flex align-i-center gap-8"
-          >
-            <editIcon class="w-18" />
-            <span class="color-green-two">Edit Deck</span>
-          </NuxtLink>
+          <editIcon class="w-18" />
+          <span class="color-green-two">Edit Deck</span>
+        </NuxtLink>
 
-          <a class="flex align-i-center gap-8" @click="deleteDeck">
-            <trashIcon class="w-18" />
-            <span class="color-green-two">Delete Deck </span>
-          </a>
-          <div class="flex align-i-center gap-8">
-            <flipIcon class="w-18" />
-            <span class="color-green-two">Flip the cards</span>
-          </div>
+        <a class="flex align-i-center gap-8" @click="deleteDeck">
+          <trashIcon class="w-18" />
+          <span class="color-green-two">Delete Deck </span>
+        </a>
+        <div class="flex align-i-center gap-8">
+          <flipIcon class="w-18" />
+          <span class="color-green-two">Flip the cards</span>
         </div>
-      </div>
+      </Menu>
     </nav>
     <AboutDeck
       :deck="deck"
@@ -59,11 +50,12 @@
 </template>
 
 <script lang="ts">
+import type Menu from "~/components/Menu.vue";
+
 export default defineNuxtComponent({
   data: () => ({
     deck: null as null | Deck,
     cards: [] as Card[],
-    showMenu: false,
   }),
   async beforeMount() {
     const deckId = parseInt(this.$route.params.deckId as string);
@@ -80,10 +72,7 @@ export default defineNuxtComponent({
   },
   methods: {
     hideMenu(e: Event) {
-      if (
-        !(this.$refs.menuDiv as HTMLElement)?.contains(e.target as HTMLElement)
-      )
-        this.showMenu = false;
+      (this.$refs.menu as InstanceType<typeof Menu>).hideMenu(e);
     },
 
     deleteDeck() {
@@ -105,9 +94,3 @@ export default defineNuxtComponent({
   },
 });
 </script>
-
-<style scoped>
-nav {
-  --icon: var(--white-two);
-}
-</style>
