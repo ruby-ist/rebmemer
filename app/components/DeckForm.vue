@@ -11,6 +11,7 @@
         border="1 solid color-cyan-one rad-10"
         font="s-1.15rem w-425 f-default-font"
         autocomplete="off"
+        required
         :value="deck.name || ''"
       />
     </div>
@@ -27,6 +28,7 @@
         border="1 solid color-cyan-one rad-10"
         font="s-1.15rem w-425 f-default-font"
         autocomplete="off"
+        required
         :value="deck.description || ''"
       />
     </div>
@@ -57,6 +59,7 @@
         id="image"
         name="image"
         accept="image/*"
+        :required="!deck.image || showFileInput"
         class="pointer w-75p color-green-two font-f-default-font [&::file-selector-button]:bg-color-white-two [&::file-selector-button]:color-indigo-one [&::file-selector-button]:bd-1 [&::file-selector-button]:bd-solid [&::file-selector-button]:bd-color-indigo-one [&::file-selector-button]:font-f-default-font [&::file-selector-button]:bd-rad-5 [&::file-selector-button]:p-4-10"
       />
     </div>
@@ -72,6 +75,8 @@
         class="bg-color-blue-one [&:focus]:no-outline color-green-two p-2-6 w-72 box-size-border-box"
         border="1 solid color-cyan-one rad-5"
         font="s-1.1rem f-default-font"
+        required
+        min="1"
         :value="deck.cardsPerRound || 20"
       />
     </div>
@@ -104,6 +109,8 @@ export default defineNuxtComponent({
     async handleFormSubmission(event: Event) {
       event.preventDefault();
       const formElement = this.$refs.form as HTMLFormElement;
+      if (!formElement.reportValidity()) return;
+
       const formData = Object.fromEntries(
         new FormData(formElement),
       ) as unknown as Deck;

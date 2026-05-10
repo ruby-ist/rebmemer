@@ -22,6 +22,7 @@
         border="1 solid color-cyan-one rad-10"
         font="s-1.15rem w-425 f-default-font"
         autocomplete="off"
+        required
         :value="card.question || ''"
       />
     </div>
@@ -36,6 +37,7 @@
         border="1 solid color-cyan-one rad-10"
         font="s-1.15rem w-425 f-default-font"
         autocomplete="off"
+        required
         :value="card.answer || ''"
       />
     </div>
@@ -69,7 +71,7 @@ export default defineNuxtComponent({
     handleFormSubmission(event: Event) {
       event.preventDefault();
       const formElement = this.$refs.form as HTMLFormElement;
-      if (!formElement) return;
+      if (!formElement.reportValidity()) return;
 
       const { question, answer } = Object.fromEntries(
         new FormData(formElement),

@@ -17,12 +17,12 @@
           class="flex align-i-center gap-8"
         >
           <editIcon class="w-18" />
-          <span class="color-green-two">Edit Deck</span>
+          <span class="color-green-two">Edit Card</span>
         </NuxtLink>
 
         <a class="flex align-i-center gap-8" @click="deleteCard">
           <trashIcon class="w-18" />
-          <span class="color-green-two">Delete Deck </span>
+          <span class="color-green-two">Delete Card</span>
         </a>
       </Menu>
     </nav>
