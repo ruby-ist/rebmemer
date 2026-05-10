@@ -56,11 +56,14 @@
     <div
       v-show="reveal"
       ref="revealPopUp"
-      class="absolute b-0 l-0 z-1 w-100vw p-40-20-60 bg-color-blue-two flex column align-i-center just-c-center gap-40 icon-color-indigo-one box-size-border-box"
-      style="box-shadow: 0 0 50px -16px var(--green-one)"
-      border-t="1 solid color-green-one"
-      border="rad-6-6-0-0"
+      class="absolute b-0 l-0 z-1 w-100vw p-20-20-60 bg-color-blue-two flex column align-i-center just-c-center gap-40 icon-color-indigo-one box-size-border-box"
+      style="box-shadow: 0 0 300px 0px var(--indigo-one)"
+      border="rad-6p-6p-0-0"
+      border-t="1 solid color-cyan-one "
     >
+      <div class="flex just-c-center w-100p">
+        <div class="bg-color-cyan-one h-3 w-36p" border="rad-50"></div>
+      </div>
       <div font="s-2rem">
         {{ currentCard.answer }}
       </div>

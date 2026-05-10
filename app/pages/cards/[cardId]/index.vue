@@ -26,12 +26,12 @@
         </a>
       </Menu>
     </nav>
-    <div class="flex column gap-12">
-      <div class="flex column gap-4 mb-10">
+    <div class="flex column gap-14">
+      <div class="flex column gap-8 mb-12">
         <div class="color-white-three">Question:</div>
         <div class="color-green-one" font="s-1.25rem">{{ card.question }}</div>
       </div>
-      <div class="flex column gap-4 mb-14">
+      <div class="flex column gap-8 mb-14">
         <div class="color-white-three">Answer:</div>
         <div class="color-green-one" font="s-1.25rem">{{ card.answer }}</div>
       </div>
@@ -45,9 +45,9 @@
           {{ deckName }}
         </div>
       </div>
-      <div class="flex gap-8">
+      <div class="flex gap-8 align-i-center">
         <div class="color-white-three">Familarity:</div>
-        <div>{{ card.familarity }}</div>
+        <ProgressBar />
       </div>
       <div class="flex gap-8 align-i-center">
         <div class="color-white-three">Created at:</div>
