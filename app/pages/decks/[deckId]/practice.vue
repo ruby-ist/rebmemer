@@ -10,7 +10,7 @@
     <div class="pt-20 flex column gap-28">
       <div class="ta-center" font="s-1.8rem">{{ currentCard.question }}</div>
       <div class="relative">
-        <DrawingCanvas v-if="canva" />
+        <DrawingCanvas v-if="canva" ref="drawingCanvas" />
         <EditableDivInput
           v-else
           @check-answer="reveal = true"
@@ -70,6 +70,7 @@
       <div class="flex align-i-center just-c-space-evenly w-100p">
         <div class="flex align-i-center column gap-8">
           <button
+            @click="moveToNextCard"
             class="bg-color-green-two p-13 pointer"
             border="1 solid color-indigo-one rad-10"
           >
@@ -79,6 +80,7 @@
         </div>
         <div class="flex align-i-center column gap-8">
           <button
+            @click="moveToNextCard"
             class="bg-color-green-two p-9 pointer"
             border="1 solid color-indigo-one rad-10"
           >
@@ -88,6 +90,7 @@
         </div>
         <div class="flex align-i-center column gap-8">
           <button
+            @click="moveToNextCard"
             class="bg-color-green-two p-14 pointer"
             border="1 solid color-indigo-one rad-10"
           >
@@ -97,6 +100,7 @@
         </div>
         <div class="flex align-i-center column gap-8">
           <button
+            @click="moveToNextCard"
             class="bg-color-green-two p-16 pointer"
             border="1 solid color-indigo-one rad-10"
           >
@@ -110,24 +114,22 @@
 </template>
 
 <script lang="ts">
+import type DrawingCanvas from "~/components/DrawingCanvas.vue";
 import type EditableDivInput from "~/components/EditableDivInput.vue";
 
 export default defineNuxtComponent({
   data: () => ({
     deck: null as null | Deck,
     currentCard: null as null | Card,
+    cards: [] as Card[],
     canva: false,
     reveal: false,
   }),
   async beforeMount() {
     const deckId = parseInt(this.$route.params.deckId as string);
     this.deck = (await db.decks.get(deckId)) as Deck;
-    const cards = await db.cards
-      .where("deckId")
-      .equals(this.deck.id)
-      .limit(1)
-      .toArray();
-    this.currentCard = cards[0] as Card;
+    this.cards = await db.cards.where("deckId").equals(this.deck.id).toArray();
+    this.currentCard = this.cards.shift() || null;
   },
   methods: {
     closeRevealPopUp(e: Event) {
@@ -144,6 +146,26 @@ export default defineNuxtComponent({
         !doneButton?.contains(clickedElement)
       )
         this.reveal = false;
+    },
+    moveToNextCard() {
+      const nextCard = this.cards.shift();
+      if (!nextCard) {
+        navigateTo(`/decks/${this.deck!.id}`);
+      } else {
+        this.currentCard = nextCard;
+        this.reveal = false;
+        this.resetAnswers();
+      }
+    },
+    resetAnswers() {
+      const editableDiv = this.$refs.editableInput as InstanceType<
+        typeof EditableDivInput
+      >;
+      const drawingCanvas = this.$refs.drawingCanvas as InstanceType<
+        typeof DrawingCanvas
+      >;
+      if (editableDiv) editableDiv.clearAnswer();
+      if (drawingCanvas) drawingCanvas.clearCanvas();
     },
   },
   watch: {
