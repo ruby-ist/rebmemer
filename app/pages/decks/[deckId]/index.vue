@@ -12,20 +12,21 @@
       <Menu ref="menu">
         <NuxtLink
           :to="`/decks/${deck.id}/edit`"
-          class="flex align-i-center gap-8"
+          class="flex align-i-center gap-14"
         >
           <editIcon class="w-18" />
           <span class="color-green-two">Edit Deck</span>
         </NuxtLink>
 
-        <a class="flex align-i-center gap-8" @click="deleteDeck">
-          <trashIcon class="w-18" />
-          <span class="color-green-two">Delete Deck </span>
-        </a>
-        <div class="flex align-i-center gap-8">
+        <div class="flex align-i-center gap-14">
           <flipIcon class="w-18" />
           <span class="color-green-two">Flip the cards</span>
         </div>
+
+        <a class="flex align-i-center gap-14" @click="deleteDeck">
+          <trashIcon class="w-18" />
+          <span class="color-green-two">Delete Deck </span>
+        </a>
       </Menu>
     </nav>
     <AboutDeck

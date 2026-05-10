@@ -14,13 +14,13 @@
       <Menu ref="menu">
         <NuxtLink
           :to="`/cards/${card.id}/edit`"
-          class="flex align-i-center gap-8"
+          class="flex align-i-center gap-14"
         >
           <editIcon class="w-18" />
           <span class="color-green-two">Edit Card</span>
         </NuxtLink>
 
-        <a class="flex align-i-center gap-8" @click="deleteCard">
+        <a class="flex align-i-center gap-14" @click="deleteCard">
           <trashIcon class="w-18" />
           <span class="color-green-two">Delete Card</span>
         </a>

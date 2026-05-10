@@ -5,7 +5,7 @@
     </button>
     <div
       v-show="showMenu"
-      class="absolute bg-color-blue-one p-16-20-24 flex column gap-24 -r-0 t-18 pointer"
+      class="absolute bg-color-blue-one p-16-14-20 flex column gap-24 -r-0 t-18 pointer"
       border="1 solid color-cyan-one rad-10"
       font="s-1.2rem"
       style="box-shadow: 0 0 100px 50px var(--indigo-one)"
