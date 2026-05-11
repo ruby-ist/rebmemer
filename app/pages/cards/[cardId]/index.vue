@@ -69,17 +69,14 @@
 import type Menu from "~/components/Menu.vue";
 
 export default defineNuxtComponent({
-  data: () => ({
-    card: null as Card | null,
-    showMenu: false,
-    deckName: "",
-  }),
-  async beforeMount() {
-    const cardId = parseInt(this.$route.params.cardId as string);
-    this.card = (await db.cards.get(cardId)) as Card;
-    db.decks.get(this.card.deckId).then((deck) => {
-      this.deckName = deck!.name;
-    });
+  async setup() {
+    const card = ref(await useCardFromParams());
+    const deck = (await db.decks.get(card.value.deckId)) as Deck;
+    return {
+      card,
+      showMenu: ref(false),
+      deckName: ref(deck.name),
+    };
   },
   methods: {
     hideMenu(e: Event) {

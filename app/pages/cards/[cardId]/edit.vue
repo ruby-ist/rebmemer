@@ -14,15 +14,10 @@
 
 <script lang="ts">
 export default defineNuxtComponent({
-  data: () => ({
-    card: null as Card | null,
-    showMenu: false,
-    deck: null as Deck | null,
-  }),
-  async beforeMount() {
-    const cardId = parseInt(this.$route.params.cardId as string);
-    this.card = (await db.cards.get(cardId)) as Card;
-    this.deck = (await db.decks.get(this.card.deckId)) as Deck;
+  async setup() {
+    const card = ref(await useCardFromParams());
+    const deck = ref(await db.decks.get(card.value.deckId));
+    return { card, deck };
   },
 });
 </script>

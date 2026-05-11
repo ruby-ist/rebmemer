@@ -118,18 +118,16 @@ import type DrawingCanvas from "~/components/DrawingCanvas.vue";
 import type EditableDivInput from "~/components/EditableDivInput.vue";
 
 export default defineNuxtComponent({
-  data: () => ({
-    deck: null as null | Deck,
-    currentCard: null as null | Card,
-    cards: [] as Card[],
-    canva: false,
-    reveal: false,
-  }),
-  async beforeMount() {
-    const deckId = parseInt(this.$route.params.deckId as string);
-    this.deck = (await db.decks.get(deckId)) as Deck;
-    this.cards = await db.cards.where("deckId").equals(this.deck.id).toArray();
-    this.currentCard = this.cards.shift() || null;
+  async setup() {
+    const deck = ref(await useDeckFromParams());
+    const cards = ref(await useCardsFromDeck(deck.value.id));
+    return {
+      deck,
+      cards,
+      currentCard: ref(cards.value.shift() || null),
+      canva: ref(false),
+      reveal: ref(false),
+    };
   },
   methods: {
     closeRevealPopUp(e: Event) {

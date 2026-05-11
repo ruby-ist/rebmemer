@@ -54,14 +54,10 @@
 import type Menu from "~/components/Menu.vue";
 
 export default defineNuxtComponent({
-  data: () => ({
-    deck: null as null | Deck,
-    cards: [] as Card[],
-  }),
-  async beforeMount() {
-    const deckId = parseInt(this.$route.params.deckId as string);
-    this.deck = (await db.decks.get(deckId)) as Deck;
-    this.cards = await db.cards.where("deckId").equals(this.deck!.id).toArray();
+  async setup() {
+    const deck = ref(await useDeckFromParams());
+    const cards = ref(await useCardsFromDeck(deck.value.id));
+    return { deck, cards };
   },
   computed: {
     lastPracticedAt() {

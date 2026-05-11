@@ -12,14 +12,6 @@
   </main>
 </template>
 
-<script lang="ts">
-export default defineNuxtComponent({
-  data: () => ({
-    deck: null as null | Deck,
-  }),
-  async beforeMount() {
-    const deckId = parseInt(this.$route.params.deckId as string);
-    this.deck = (await db.decks.get(deckId)) as Deck;
-  },
-});
+<script setup lang="ts">
+const deck = ref(await useDeckFromParams());
 </script>
