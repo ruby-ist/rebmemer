@@ -1,6 +1,6 @@
 <template>
   <main v-if="deck">
-    <nav class="p-18-0 flex align-i-center gap-6">
+    <nav class="p-18-0 flex align-i-center gap-6 icon-color-white-two">
       <NuxtLink :to="`/decks/${deck.id}`" class="flex align-i-center">
         <backIcon class="w-24" />
       </NuxtLink>
@@ -23,9 +23,3 @@ export default defineNuxtComponent({
   },
 });
 </script>
-
-<style scoped>
-nav {
-  --icon: var(--white-two);
-}
-</style>

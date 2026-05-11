@@ -1,5 +1,5 @@
 <template>
-  <div class="cards">
+  <div class="icon-color-green-two">
     <div class="flex align-i-center just-c-space-between mb-8">
       <h2 class="m-0 color-green-two" font="w-475">Cards</h2>
       <NuxtLink :to="`/decks/${deck.id}/cards/new`">
@@ -90,9 +90,3 @@ export default defineNuxtComponent({
   },
 });
 </script>
-
-<style scoped>
-.cards {
-  --icon: var(--green-two);
-}
-</style>

@@ -14,7 +14,7 @@
       <div class="break-word" font="s-0.85rem w-400">
         {{ deck.description }}
       </div>
-      <div class="timestamp flex align-i-center gap-4">
+      <div class="icon-color-white-three flex align-i-center gap-4">
         <ClockIcon class="w-10" />
         <div class="color-white-three" font="s-0.75rem">
           {{
@@ -58,9 +58,3 @@ export default defineNuxtComponent({
   },
 });
 </script>
-
-<style scoped>
-.timestamp {
-  --icon: var(--white-three);
-}
-</style>
