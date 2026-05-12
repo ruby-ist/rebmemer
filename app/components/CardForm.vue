@@ -73,57 +73,45 @@ export default defineNuxtComponent({
       const formElement = this.$refs.form as HTMLFormElement;
       if (!formElement.reportValidity()) return;
 
-      const { question, answer } = Object.fromEntries(
-        new FormData(formElement),
-      ) as { question: string; answer: string };
+      const { question, answer } = this.getQuestionAndAnswer(formElement);
+      const card = this.card.id ? Object.assign({}, this.card) : this.newCard();
+      card.question = question;
+      card.answer = answer;
 
-      if (this.card.id) {
-        this.updateCard(question, answer);
-      } else {
-        this.createCard(question, answer);
-      }
+      this.card.id ? this.updateCard(card) : this.createCard(card);
     },
 
-    createCard(question: string, answer: string) {
-      const cardAttributes = {
-        question: question as string,
-        answer: answer as string,
+    getQuestionAndAnswer(form: HTMLFormElement) {
+      const { question, answer } = Object.fromEntries(new FormData(form)) as {
+        question: string;
+        answer: string;
+      };
+      return { question, answer };
+    },
+
+    createCard(card: Card) {
+      db.cards.add(card).then(() => {
+        navigateTo(`/decks/${this.deck!.id}`);
+      });
+    },
+
+    updateCard(card: Card) {
+      db.cards.put(card).then(() => {
+        navigateTo(`/decks/${this.deck!.id}`);
+      });
+    },
+
+    newCard() {
+      return {
+        question: "",
+        answer: "",
         deckId: this.deck!.id,
         createdAt: Date.now(),
         familarity: 0,
         reverseFamilarity: 0,
         lastReviewedAt: Date.now(),
         lastReverseReviewedAt: Date.now(),
-      };
-      db.cards.add(cardAttributes).then(() => {
-        navigateTo(`/decks/${this.deck!.id}`);
-      });
-    },
-
-    updateCard(question: string, answer: string) {
-      const {
-        id,
-        deckId,
-        createdAt,
-        familarity,
-        reverseFamilarity,
-        lastReviewedAt,
-        lastReverseReviewedAt,
-      } = this.card;
-      const cardAttributes = {
-        id,
-        question: question as string,
-        answer: answer as string,
-        deckId,
-        createdAt,
-        familarity,
-        reverseFamilarity,
-        lastReviewedAt,
-        lastReverseReviewedAt,
-      };
-      db.cards.put(cardAttributes).then(() => {
-        navigateTo(`/decks/${this.deck!.id}`);
-      });
+      } as Card;
     },
   },
 });
