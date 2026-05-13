@@ -8,7 +8,9 @@
     </nav>
 
     <div class="pt-20 flex column gap-28">
-      <div class="ta-center" font="s-1.8rem">{{ currentCard.question }}</div>
+      <div class="ta-center" font="s-1.8rem">
+        {{ deck.reversed ? currentCard.answer : currentCard.question }}
+      </div>
       <div class="relative">
         <DrawingCanvas v-if="canva" ref="drawingCanvas" />
         <EditableDivInput
@@ -65,7 +67,7 @@
         <div class="bg-color-cyan-one h-3 w-36p" border="rad-50"></div>
       </div>
       <div font="s-2rem">
-        {{ currentCard.answer }}
+        {{ deck.reversed ? currentCard.question : currentCard.answer }}
       </div>
       <div class="flex align-i-center just-c-space-evenly w-100p">
         <div class="flex align-i-center column gap-8">

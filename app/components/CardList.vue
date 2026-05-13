@@ -16,8 +16,14 @@
       >
         <option value="question">Question</option>
         <option value="answer">Answer</option>
-        <option value="familarity">Familarity</option>
-        <option value="lastReviewedAt">Last Practiced</option>
+        <option :value="deck.reversed ? 'reverseFamilarity' : 'familarity'">
+          Familarity
+        </option>
+        <option
+          :value="deck.reversed ? 'lastReverseReviewedAt' : 'lastReviewedAt'"
+        >
+          Last Practiced
+        </option>
         <option value="createdAt">Created Date</option>
       </select>
       <button
@@ -41,6 +47,7 @@
         :key="card.id"
         :card="card"
         class="[&:last-child]:border-none"
+        :reversed="deck.reversed"
       />
     </div>
     <div

@@ -6,6 +6,7 @@ interface Deck {
   description: string;
   cardsPerRound: number;
   image: Blob | null;
+  reversed: boolean;
 }
 
 interface Card {

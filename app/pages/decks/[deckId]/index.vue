@@ -18,10 +18,13 @@
           <span class="color-green-two">Edit Deck</span>
         </NuxtLink>
 
-        <div class="flex align-i-center gap-14">
-          <flipIcon class="w-18" />
+        <a class="flex align-i-center gap-14" @click="flipCards">
+          <flipIcon
+            class="w-18"
+            :style="`transform: rotateY(${deck.reversed ? 180 : 0}deg)`"
+          />
           <span class="color-green-two">Flip the cards</span>
-        </div>
+        </a>
 
         <a class="flex align-i-center gap-14" @click="deleteDeck">
           <trashIcon class="w-18" />
@@ -87,6 +90,16 @@ export default defineNuxtComponent({
               navigateTo("/decks");
             });
           });
+    },
+
+    async flipCards() {
+      const deck = Object.assign({}, this.deck);
+      deck.reversed = !this.deck.reversed;
+
+      await db.decks.put(deck);
+      this.deck = (await db.decks.get(this.deck.id)) as Deck;
+      // @ts-expect-error
+      (this.$refs.menu.$el as HTMLElement).parentElement.click();
     },
   },
 });
