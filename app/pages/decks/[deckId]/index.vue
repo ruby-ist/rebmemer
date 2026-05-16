@@ -26,6 +26,14 @@
           <span class="color-green-two">Flip the cards</span>
         </a>
 
+        <NuxtLink
+          :to="`/decks/${deck.id}/cards/import`"
+          class="flex align-i-center gap-14"
+        >
+          <uploadIcon class="w-18" />
+          <span class="color-green-two">Import Cards</span>
+        </NuxtLink>
+
         <a class="flex align-i-center gap-14" @click="deleteDeck">
           <trashIcon class="w-18" />
           <span class="color-green-two">Delete Deck </span>
