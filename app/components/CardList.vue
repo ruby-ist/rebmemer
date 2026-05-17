@@ -43,7 +43,7 @@
       font="s-1.1rem w-500"
     >
       <Card
-        v-for="card in sortedCards"
+        v-for="card in sortedCards.slice(0, cardLimit)"
         :key="card.id"
         :card="card"
         class="[&:last-child]:border-none"
@@ -76,6 +76,7 @@ export default defineNuxtComponent({
   data: () => ({
     sortByKey: "createdAt",
     sortByAsc: true,
+    cardLimit: 100,
   }),
   computed: {
     sortedCards(): Card[] {
@@ -94,6 +95,22 @@ export default defineNuxtComponent({
         return this.sortByAsc ? valueOne - valueTwo : valueTwo - valueOne;
       });
     },
+  },
+  methods: {
+    scrollEvent() {
+      const body = document.body;
+      if (
+        body.scrollTop + 2000 > body.scrollHeight &&
+        this.cardLimit < this.cards.length
+      )
+        this.cardLimit += 100;
+    },
+  },
+  mounted() {
+    document.body.addEventListener("scroll", this.scrollEvent);
+  },
+  beforeUnmount() {
+    document.body.removeEventListener("scroll", this.scrollEvent);
   },
 });
 </script>

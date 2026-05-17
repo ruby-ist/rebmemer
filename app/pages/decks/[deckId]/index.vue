@@ -34,6 +34,11 @@
           <span class="color-green-two">Import Cards</span>
         </NuxtLink>
 
+        <a class="flex align-i-center gap-14" @click="exportCards">
+          <ExportIcon class="w-18" />
+          <span class="color-green-two">Export cards</span>
+        </a>
+
         <a class="flex align-i-center gap-14" @click="deleteDeck">
           <trashIcon class="w-18" />
           <span class="color-green-two">Delete Deck </span>
@@ -58,6 +63,13 @@
       <div class="bg-color-cyan-one h-1 w-50p"></div>
     </div>
     <CardList :deck="deck" :cards="cards" />
+    <button
+      @click="scrollToTop"
+      class="fixed t-86dvh r-16 bg-color-green-two p-16 grid place-i-center pointer"
+      border="none rad-50"
+    >
+      <MoveToTopIcon class="icon-color-indigo-one w-28 h-28" />
+    </button>
   </main>
 </template>
 
@@ -108,6 +120,38 @@ export default defineNuxtComponent({
       this.deck = (await db.decks.get(this.deck.id)) as Deck;
       // @ts-expect-error
       (this.$refs.menu.$el as HTMLElement).parentElement.click();
+    },
+
+    scrollToTop() {
+      document.body.scrollTo({ top: 0, behavior: "smooth" });
+    },
+
+    exportCards() {
+      const headers =
+        "Question|Answer|Familarity|Last Practiced|Reverse Familarity|Last Reverse Practiced";
+      const records = this.cards
+        .map((card) =>
+          [
+            card.question,
+            card.answer,
+            card.familarity,
+            new Date(card.lastReviewedAt).toISOString(),
+            card.reverseFamilarity,
+            new Date(card.lastReverseReviewedAt).toISOString(),
+          ].join("|"),
+        )
+        .join("\n");
+      this.downloadFile(`${headers}\n${records}`);
+    },
+
+    downloadFile(content: string) {
+      const blob = new Blob([content], { type: "text/csv" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${this.deck.name}_${new Date(this.lastPracticedAt!).toISOString()}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
     },
   },
 });

@@ -49,17 +49,19 @@ export default defineNuxtComponent({
     },
 
     async importCards() {
-      if (!this.file) return;
+      try {
+        if (!this.file) return;
 
-      const content = await this.readFile(this.file);
-      const data = this.parseCSVContent(content);
-      data.shift();
+        const content = await this.readFile(this.file);
+        const data = this.parseCSVContent(content);
+        data.shift();
 
-      const cards = data
-        .map((row) => this.convertRowToCard(row))
-        .filter(Boolean) as Card[];
-      await db.cards.bulkAdd(cards);
-      navigateTo(`/decks/${this.deck.id}`);
+        const cards = data.map((row) => this.convertRowToCard(row));
+        await db.cards.bulkAdd(cards);
+        navigateTo(`/decks/${this.deck.id}`);
+      } catch (e) {
+        alert(e);
+      }
     },
 
     readFile(file: File): Promise<string> {
@@ -84,10 +86,9 @@ export default defineNuxtComponent({
         .map((row) => row.split("|").map((column) => column.trim()));
     },
 
-    convertRowToCard(row: string[]): Card | null {
+    convertRowToCard(row: string[]): Card {
       if (row.length !== 6) {
-        console.error("Invalid row format:", row);
-        return null;
+        throw new Error(`Invalid row format: ${row}`);
       }
 
       const [
@@ -98,20 +99,28 @@ export default defineNuxtComponent({
         reverseFamilarity,
         lastReverseReviewedAt,
       ] = row as [string, string, string, string, string, string];
-      return {
+      const card = {
         question,
         answer,
-        familarity: parseInt(familarity || "0"),
+        familarity: parseFloat(familarity || "0"),
         lastReviewedAt: lastReviewedAt
           ? Date.parse(lastReviewedAt)
           : Date.now(),
-        reverseFamilarity: parseInt(reverseFamilarity || "0"),
+        reverseFamilarity: parseFloat(reverseFamilarity || "0"),
         lastReverseReviewedAt: lastReverseReviewedAt
           ? Date.parse(lastReverseReviewedAt)
           : Date.now(),
         createdAt: Date.now(),
         deckId: this.deck.id,
       } as unknown as Card;
+
+      if (
+        Object.values(card).some((value) => {
+          Number.isNaN(value);
+        })
+      )
+        throw new Error(`Invalid row format: ${row}`);
+      else return card;
     },
   },
 });
