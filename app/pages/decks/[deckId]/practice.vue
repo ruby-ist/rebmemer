@@ -122,7 +122,13 @@ import type EditableDivInput from "~/components/EditableDivInput.vue";
 export default defineNuxtComponent({
   async setup() {
     const deck = ref(await useDeckFromParams());
-    const cards = ref(await useCardsFromDeck(deck.value.id));
+    const cards = ref(
+      await db.cards
+        .where("deckId")
+        .equals(deck.value.id)
+        .limit(deck.value.cardsPerRound)
+        .toArray(),
+    );
     return {
       deck,
       cards,
