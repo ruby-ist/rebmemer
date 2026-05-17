@@ -1,10 +1,24 @@
 <template>
   <div class="icon-color-green-two">
-    <div class="flex align-i-center just-c-space-between mb-8">
+    <div class="flex align-i-center just-c-space-between mb-10">
       <h2 class="m-0 color-green-two" font="w-475">Cards</h2>
       <NuxtLink :to="`/decks/${deck.id}/cards/new`">
         <PlusIcon class="w-36 pointer" />
       </NuxtLink>
+    </div>
+    <div class="mb-16">
+      <input
+        type="search"
+        id="name"
+        v-model="search"
+        name="name"
+        class="bg-color-blue-one [&:focus]:no-outline color-green-two p-12 w-100p box-size-border-box"
+        border="1 solid color-cyan-one rad-10"
+        font="s-1.15rem w-425 f-default-font"
+        autocomplete="off"
+        spellcheck="false"
+        placeholder="Search..."
+      />
     </div>
     <div class="mb-20 flex align-i-center gap-8" font="w-450">
       <label>Sort by</label>
@@ -77,10 +91,11 @@ export default defineNuxtComponent({
     sortByKey: "createdAt",
     sortByAsc: true,
     cardLimit: 100,
+    search: "",
   }),
   computed: {
     sortedCards(): Card[] {
-      return [...this.cards].sort((cardOne, cardTwo) => {
+      return this.filteredCards.sort((cardOne, cardTwo) => {
         // @ts-expect-error
         const valueOne = cardOne[this.sortByKey];
         // @ts-expect-error
@@ -95,13 +110,23 @@ export default defineNuxtComponent({
         return this.sortByAsc ? valueOne - valueTwo : valueTwo - valueOne;
       });
     },
+    filteredCards() {
+      if (!this.search) return [...this.cards];
+
+      return [...this.cards].filter((card) => {
+        return (
+          card.question.includes(this.search) ||
+          card.answer.includes(this.search)
+        );
+      });
+    },
   },
   methods: {
     scrollEvent() {
       const body = document.body;
       if (
         body.scrollTop + 2000 > body.scrollHeight &&
-        this.cardLimit < this.cards.length
+        this.cardLimit < this.sortedCards.length
       )
         this.cardLimit += 100;
     },
