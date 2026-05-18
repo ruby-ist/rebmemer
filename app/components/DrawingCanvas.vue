@@ -1,12 +1,11 @@
 <template>
   <div>
     <div
-      class="absolute t-12 l-12 flex gap-8 align-i-center just-c-space-between w-[calc(100vw-64px)]"
+      class="absolute t-36p -r-12p flex gap-8 align-i-center just-c-space-between"
+      :style="`transform: rotate(270deg)`"
     >
       <div class="slider-wrapper relative grid place-i-center">
-        <div
-          class="slider-bro absolute bg-color-cyan-one h-16 w-[calc(100%-19px)]"
-        ></div>
+        <div class="slider-bro absolute bg-color-cyan-one h-16 w-60vw"></div>
         <input
           v-model="strokeWidth"
           class="slider pointer relative z-1 w-100p"
@@ -15,20 +14,24 @@
           max="16"
         />
       </div>
+    </div>
+    <div
+      class="absolute l-12 b-12 flex gap-8 align-i-center just-c-space-between"
+    >
       <div class="flex gap-4">
         <button
-          class="bg-color-green-two no-bg no-outline border-none pointer p-2-4 icon-color-green-two"
-          border="rad-10"
-          @click="undo"
-        >
-          <undoIcon class="w-28 h-28" />
-        </button>
-        <button
-          class="bg-color-green-two no-bg no-outline border-none pointer p-2-4 icon-color-green-two"
+          class="bg-color-green-two no-bg no-outline border-none pointer p-4-8 icon-color-green-two"
           border="rad-10"
           @click="clearCanvas"
         >
           <eraseIcon class="w-28 h-28" />
+        </button>
+        <button
+          class="bg-color-green-two no-bg no-outline border-none pointer p-4-8 icon-color-green-two"
+          border="rad-10"
+          @click="undo"
+        >
+          <undoIcon class="w-28 h-28" />
         </button>
       </div>
     </div>

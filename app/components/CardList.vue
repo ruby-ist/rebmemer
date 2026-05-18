@@ -12,7 +12,7 @@
         id="name"
         v-model="search"
         name="name"
-        class="bg-color-blue-one [&:focus]:no-outline color-green-two p-12 w-100p box-size-border-box"
+        class="bg-color-blue-one [&:focus]:no-outline color-green-two [&::placeholder]:color-green-one p-12 w-100p box-size-border-box"
         border="1 solid color-cyan-one rad-10"
         font="s-1.15rem w-425 f-default-font"
         autocomplete="off"
