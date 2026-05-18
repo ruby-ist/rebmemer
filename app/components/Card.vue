@@ -1,6 +1,6 @@
 <template>
   <div class="p-20-0" border="b-1 b-solid b-color-cyan-one">
-    <NuxtLink :to="`/cards/${card.id}`" class="flex column gap-14">
+    <NuxtLink :to="link ? `/cards/${card.id}` : ''" class="flex column gap-14">
       <div class="flex just-c-space-between">
         <div font="w-450 s-1.2rem" class="color-white-two max-w-80p">
           {{ reversed ? card.answer : card.question }}
@@ -33,6 +33,10 @@ export default defineNuxtComponent({
     reversed: {
       type: Boolean,
       default: false,
+    },
+    link: {
+      type: Boolean,
+      default: true,
     },
   },
 });

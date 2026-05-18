@@ -135,6 +135,7 @@
           :card="card"
           class="[&:last-child]:border-none"
           :reversed="deck.reversed"
+          :link="false"
         />
       </div>
       <div
@@ -188,8 +189,8 @@ export default defineNuxtComponent({
       const clickedElement = e.target as HTMLElement;
 
       if (
-        !revealPopUp.contains(clickedElement) &&
-        !revealButton.contains(clickedElement) &&
+        !revealPopUp?.contains(clickedElement) &&
+        !revealButton?.contains(clickedElement) &&
         !doneButton?.contains(clickedElement)
       )
         this.reveal = false;
