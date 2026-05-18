@@ -123,7 +123,7 @@
         </div>
       </div>
     </div>
-    <div v-else class="mt-32 pb-64">
+    <div v-else class="mt-24 pb-64">
       <div
         class="flex column p-0-16"
         border="1 solid color-cyan-one rad-16"
@@ -138,15 +138,12 @@
           :link="false"
         />
       </div>
-      <div
-        class="absolute w-[calc(100%-40px)] b-40px grid place-i-center box-size-border-box"
-      >
+      <div class="w-100p grid place-i-center">
         <button
           @click="navigateTo(`/decks/${deck.id}`)"
-          class="bg-color-green-two color-indigo-one p-12-24 pointer"
+          class="bg-color-green-two color-indigo-one p-12-24 pointer mt-28 w-100p"
           border="1px solid color-indigo-one rad-10"
           font="s-1.35rem w-475 f-default-font"
-          style="box-shadow: 0 0 28px 1px var(--green-one)"
         >
           Done
         </button>

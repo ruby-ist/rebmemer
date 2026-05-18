@@ -63,13 +63,6 @@
       <div class="bg-color-cyan-one h-1 w-50p"></div>
     </div>
     <CardList :deck="deck" :cards="cards" />
-    <button
-      @click="scrollToTop"
-      class="fixed t-86dvh r-16 bg-color-green-two p-16 grid place-i-center pointer"
-      border="none rad-50"
-    >
-      <MoveToTopIcon class="icon-color-indigo-one w-28 h-28" />
-    </button>
   </main>
 </template>
 
@@ -120,10 +113,6 @@ export default defineNuxtComponent({
       this.deck = (await db.decks.get(this.deck.id)) as Deck;
       // @ts-expect-error
       (this.$refs.menu.$el as HTMLElement).parentElement.click();
-    },
-
-    scrollToTop() {
-      document.body.scrollTo({ top: 0, behavior: "smooth" });
     },
 
     exportCards() {

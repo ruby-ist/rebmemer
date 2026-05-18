@@ -72,6 +72,14 @@
     >
       No Cards Found!
     </div>
+    <button
+      @click="scrollToTop"
+      v-if="showScrollButton"
+      class="fixed t-86dvh r-16 bg-color-green-two p-16 grid place-i-center pointer"
+      border="none rad-50"
+    >
+      <MoveToTopIcon class="icon-color-indigo-one w-28 h-28" />
+    </button>
   </div>
 </template>
 
@@ -92,6 +100,7 @@ export default defineNuxtComponent({
     sortByAsc: true,
     cardLimit: 100,
     search: "",
+    showScrollButton: false,
   }),
   computed: {
     sortedCards(): Card[] {
@@ -129,10 +138,16 @@ export default defineNuxtComponent({
         this.cardLimit < this.sortedCards.length
       )
         this.cardLimit += 100;
+
+      this.showScrollButton = body.scrollTop > 290 ? true : false;
+    },
+    scrollToTop() {
+      document.body.scrollTo({ top: 0, behavior: "smooth" });
     },
   },
   mounted() {
     document.body.addEventListener("scroll", this.scrollEvent);
+    document.body.scrollTo({ top: 0, behavior: "auto" });
   },
   beforeUnmount() {
     document.body.removeEventListener("scroll", this.scrollEvent);

@@ -17,7 +17,6 @@ body {
   font-family: var(--default-font);
 
   overflow-y: auto;
-  scroll-behavior: smooth;
   overscroll-behavior: none;
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: none;
