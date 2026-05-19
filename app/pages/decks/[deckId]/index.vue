@@ -1,5 +1,5 @@
 <template>
-  <main v-if="deck" @click="hideMenu" class="pb-80">
+  <main v-if="deck" class="pb-80">
     <nav
       class="p-18-0 flex just-c-space-between align-i-center relative icon-color-white-two"
     >
@@ -50,7 +50,11 @@
       :cardCount="cards.length"
       :lastPracticedAt="lastPracticedAt"
     />
-    <NuxtLink :to="`/decks/${deck.id}/practice`" class="block m-20-0">
+    <NuxtLink
+      v-if="cards.length !== 0"
+      :to="`/decks/${deck.id}/practice`"
+      class="block m-20-0"
+    >
       <button
         class="bg-color-green-one color-indigo-one w-100p p-10 pointer"
         border="none rad-10"
@@ -84,10 +88,6 @@ export default defineNuxtComponent({
     },
   },
   methods: {
-    hideMenu(e: Event) {
-      (this.$refs.menu as InstanceType<typeof Menu>).hideMenu(e);
-    },
-
     deleteDeck() {
       if (
         confirm(
@@ -111,8 +111,6 @@ export default defineNuxtComponent({
 
       await db.decks.put(deck);
       this.deck = (await db.decks.get(this.deck.id)) as Deck;
-      // @ts-expect-error
-      (this.$refs.menu.$el as HTMLElement).parentElement.click();
     },
 
     exportCards() {

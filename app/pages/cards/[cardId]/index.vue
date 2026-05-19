@@ -1,5 +1,5 @@
 <template>
-  <main v-if="card" @click="hideMenu">
+  <main v-if="card">
     <nav
       class="p-18-0 flex mb-6 just-c-space-between align-i-center relative icon-color-white-two"
     >
@@ -79,9 +79,6 @@ export default defineNuxtComponent({
     };
   },
   methods: {
-    hideMenu(e: Event) {
-      (this.$refs.menu as InstanceType<typeof Menu>).hideMenu(e);
-    },
     async deleteCard() {
       if (confirm("Are you sure that you want to delete this card?"))
         db.cards.delete(this.card!.id).then(() => {

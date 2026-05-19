@@ -12,6 +12,7 @@
         id="name"
         v-model="search"
         name="name"
+        @focus="moveSearchBarToTop"
         class="bg-color-blue-one [&:focus]:no-outline color-green-two [&::placeholder]:color-green-one p-12 w-100p box-size-border-box"
         border="1 solid color-cyan-one rad-10"
         font="s-1.15rem w-425 f-default-font"
@@ -66,7 +67,7 @@
     </div>
     <div
       v-else
-      class="bg-color-blue-one flex column p-24 ta-center"
+      class="bg-color-blue-one flex column p-48-24 ta-center"
       border="rad-16"
       font="s-1.1rem"
     >
@@ -144,6 +145,9 @@ export default defineNuxtComponent({
     scrollToTop() {
       document.body.scrollTo({ top: 0, behavior: "smooth" });
     },
+    moveSearchBarToTop() {
+      document.body.scrollTo({ top: 291, behavior: "smooth" });
+    },
   },
   mounted() {
     document.body.addEventListener("scroll", this.scrollEvent);
@@ -151,6 +155,13 @@ export default defineNuxtComponent({
   },
   beforeUnmount() {
     document.body.removeEventListener("scroll", this.scrollEvent);
+  },
+  watch: {
+    search(newValue, oldValue) {
+      if (oldValue.length < newValue.length) {
+        this.moveSearchBarToTop();
+      }
+    },
   },
 });
 </script>
