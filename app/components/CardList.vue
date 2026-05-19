@@ -51,7 +51,7 @@
       </button>
     </div>
     <div
-      v-if="cards.length !== 0"
+      v-if="sortedCards.length !== 0"
       class="flex column p-0-16"
       border="1 solid color-cyan-one rad-16"
       font="s-1.1rem w-500"
@@ -124,8 +124,8 @@ export default defineNuxtComponent({
 
       return [...this.cards].filter((card) => {
         return (
-          card.question.includes(this.search) ||
-          card.answer.includes(this.search)
+          card.question.toLowerCase().includes(this.search.toLowerCase()) ||
+          card.answer.toLowerCase().includes(this.search.toLowerCase())
         );
       });
     },

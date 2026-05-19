@@ -12,7 +12,7 @@
         </h1>
       </div>
       <div font="s-1.4rem" v-if="!finishedPractice">
-        {{ deck.cardsPerRound - cards.length }} / {{ deck.cardsPerRound }}
+        {{ cardsCopy.length - cards.length }} / {{ cardsCopy.length }}
       </div>
     </nav>
 
