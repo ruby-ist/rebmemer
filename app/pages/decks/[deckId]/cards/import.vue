@@ -103,13 +103,11 @@ export default defineNuxtComponent({
         question,
         answer,
         familarity: parseFloat(familarity || "0"),
-        lastReviewedAt: lastReviewedAt
-          ? Date.parse(lastReviewedAt)
-          : Date.now(),
+        lastReviewedAt: lastReviewedAt ? Date.parse(lastReviewedAt) : 0,
         reverseFamilarity: parseFloat(reverseFamilarity || "0"),
         lastReverseReviewedAt: lastReverseReviewedAt
           ? Date.parse(lastReverseReviewedAt)
-          : Date.now(),
+          : 0,
         createdAt: Date.now(),
         deckId: this.deck.id,
       } as unknown as Card;

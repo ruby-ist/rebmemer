@@ -109,8 +109,8 @@ export default defineNuxtComponent({
         createdAt: Date.now(),
         familarity: 0,
         reverseFamilarity: 0,
-        lastReviewedAt: Date.now(),
-        lastReverseReviewedAt: Date.now(),
+        lastReviewedAt: 0,
+        lastReverseReviewedAt: 0,
       } as Card;
     },
   },

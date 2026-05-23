@@ -7,6 +7,11 @@ interface Deck {
   cardsPerRound: number;
   image: Blob | null;
   reversed: boolean;
+  retentionExpansionBase: number;
+  correctAnswerLeap: number;
+  partialAnswerPenalty: number;
+  wrongAnswerPenalty: number;
+  forgottenAnswerPenalty: number;
 }
 
 interface Card {

@@ -13,9 +13,9 @@
         </div>
         <div class="color-white-two" font="w-400 s-0.8rem">
           {{
-            new Date(
-              reversed ? card.lastReverseReviewedAt : card.lastReviewedAt,
-            ).toLocaleString()
+            reversed
+              ? reviewedAtAsString(card.lastReverseReviewedAt)
+              : reviewedAtAsString(card.lastReviewedAt)
           }}
         </div>
       </div>
