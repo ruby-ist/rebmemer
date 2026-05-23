@@ -5,3 +5,5 @@ export function reviewedAtAsString(date: number) {
     return "---";
   }
 }
+
+export const MAX_FAMILARITY = 10;

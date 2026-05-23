@@ -47,7 +47,11 @@
       </div>
       <div class="flex gap-8 align-i-center">
         <div class="color-white-three">Familarity:</div>
-        <ProgressBar />
+        <ProgressBar :progress="card.familarity" />
+      </div>
+      <div class="flex gap-8 align-i-center">
+        <div class="color-white-three">Reverse Familarity:</div>
+        <ProgressBar :progress="card.reverseFamilarity" />
       </div>
       <div class="flex gap-8 align-i-center">
         <div class="color-white-three">Created at:</div>
@@ -58,7 +62,13 @@
       <div class="flex gap-8 align-i-center">
         <div class="color-white-three">Last reviewed at:</div>
         <div font="s-0.96rem">
-          {{ new Date(card.lastReviewedAt).toLocaleString() }}
+          {{ reviewedAtAsString(card.lastReviewedAt) }}
+        </div>
+      </div>
+      <div class="flex gap-8 align-i-center">
+        <div class="color-white-three">Last reverse reviewed at:</div>
+        <div font="s-0.96rem">
+          {{ reviewedAtAsString(card.lastReverseReviewedAt) }}
         </div>
       </div>
     </div>

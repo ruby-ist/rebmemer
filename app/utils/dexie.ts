@@ -12,6 +12,7 @@ interface Deck {
   partialAnswerPenalty: number;
   wrongAnswerPenalty: number;
   forgottenAnswerPenalty: number;
+  newCardsRatio: number;
 }
 
 interface Card {

@@ -1,5 +1,5 @@
 <template>
-  <main v-if="deck" class="pb-80">
+  <main v-if="deck">
     <nav
       class="p-18-0 flex just-c-space-between align-i-center relative icon-color-white-two"
     >

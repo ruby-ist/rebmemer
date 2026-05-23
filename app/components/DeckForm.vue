@@ -184,6 +184,26 @@
             <span class="ml-6">%</span>
           </div>
         </div>
+
+        <div class="flex align-i-center just-c-space-between gap-10">
+          <label for="newCardsRatio" class="color-white-two">
+            New cards Ratio:
+          </label>
+          <div>
+            <input
+              type="number"
+              id="newCardsRatio"
+              name="newCardsRatio"
+              class="bg-color-blue-one [&:focus]:no-outline color-green-two p-2-6 w-72 box-size-border-box"
+              border="1 solid color-cyan-one rad-5"
+              font="s-1.1rem f-default-font"
+              required
+              min="1"
+              :value="deck.newCardsRatio || 50"
+            />
+            <span class="ml-6">%</span>
+          </div>
+        </div>
       </div>
     </fieldset>
 

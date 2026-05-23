@@ -1,5 +1,5 @@
 <template>
-  <div class="icon-color-green-two">
+  <div class="icon-color-green-two min-h-98dvh">
     <div class="flex align-i-center just-c-space-between mb-10">
       <h2 class="m-0 color-green-two" font="w-475">Cards</h2>
       <NuxtLink :to="`/decks/${deck.id}/cards/new`">
@@ -13,7 +13,7 @@
         v-model="search"
         name="name"
         @focus="moveSearchBarToTop"
-        class="bg-color-blue-one [&:focus]:no-outline color-green-two [&::placeholder]:color-green-one p-12 w-100p box-size-border-box"
+        class="bg-color-blue-one [&:focus]:no-outline color-green-two [&::placeholder]:opacity-0.9 [&::placeholder]:color-green-one p-12 w-100p box-size-border-box"
         border="1 solid color-cyan-one rad-10"
         font="s-1.15rem w-425 f-default-font"
         autocomplete="off"
@@ -146,7 +146,9 @@ export default defineNuxtComponent({
       document.body.scrollTo({ top: 0, behavior: "smooth" });
     },
     moveSearchBarToTop() {
-      document.body.scrollTo({ top: 291, behavior: "smooth" });
+      if (document.body.scrollTop > 290) return;
+
+      document.body.scrollTo({ top: 290, behavior: "smooth" });
     },
   },
   mounted() {
@@ -160,6 +162,19 @@ export default defineNuxtComponent({
     search(newValue, oldValue) {
       if (oldValue.length < newValue.length) {
         this.moveSearchBarToTop();
+      }
+    },
+    deck(newValue) {
+      if (newValue.reversed) {
+        if (this.sortByKey === "familarity")
+          this.sortByKey = "reverseFamilarity";
+        else if (this.sortByKey === "lastReviewedAt")
+          this.sortByKey = "lastReverseReviewedAt";
+      } else {
+        if (this.sortByKey === "reverseFamilarity")
+          this.sortByKey = "familarity";
+        else if (this.sortByKey === "lastReverseReviewedAt")
+          this.sortByKey = "lastReviewedAt";
       }
     },
   },

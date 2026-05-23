@@ -6,10 +6,15 @@
 
 <script lang="ts">
 export default defineNuxtComponent({
+  props: {
+    progress: {
+      type: Number,
+      required: true,
+    },
+  },
   computed: {
-    progress() {
-      const progress = 100 - (Math.floor(Math.random() * 100) + 1);
-      return `inset(0 ${progress}% 0 0)`;
+    progressPercentage() {
+      return `inset(0 ${100 - this.progress * 10}% 0 0)`;
     },
   },
 });
@@ -24,6 +29,6 @@ export default defineNuxtComponent({
     #009db7 66.66%,
     #406db0 100%
   );
-  clip-path: v-bind(progress);
+  clip-path: v-bind(progressPercentage);
 }
 </style>

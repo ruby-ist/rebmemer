@@ -5,7 +5,9 @@
         <div font="w-450 s-1.2rem" class="color-white-two max-w-80p">
           {{ reversed ? card.answer : card.question }}
         </div>
-        <ProgressBar />
+        <ProgressBar
+          :progress="reversed ? card.reverseFamilarity : card.familarity"
+        />
       </div>
       <div class="flex just-c-space-between align-i-end">
         <div class="color-white-one max-w-54p" font="s-1.2rem">

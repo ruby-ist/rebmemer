@@ -82,7 +82,7 @@
         <div class="flex align-i-center just-c-space-evenly w-100p">
           <div class="flex align-i-center column gap-8">
             <button
-              @click="moveToNextCard"
+              @click="addPenaltyToCard(deck.forgottenAnswerPenalty)"
               class="bg-color-green-two p-13 pointer"
               border="1 solid color-indigo-one rad-10"
             >
@@ -92,7 +92,7 @@
           </div>
           <div class="flex align-i-center column gap-8">
             <button
-              @click="moveToNextCard"
+              @click="addPenaltyToCard(deck.wrongAnswerPenalty)"
               class="bg-color-green-two p-9 pointer"
               border="1 solid color-indigo-one rad-10"
             >
@@ -102,7 +102,7 @@
           </div>
           <div class="flex align-i-center column gap-8">
             <button
-              @click="moveToNextCard"
+              @click="addPenaltyToCard(deck.partialAnswerPenalty)"
               class="bg-color-green-two p-14 pointer"
               border="1 solid color-indigo-one rad-10"
             >
@@ -112,7 +112,7 @@
           </div>
           <div class="flex align-i-center column gap-8">
             <button
-              @click="moveToNextCard"
+              @click="leapFowardFamilarity"
               class="bg-color-green-two p-16 pointer"
               border="1 solid color-indigo-one rad-10"
             >
@@ -202,6 +202,41 @@ export default defineNuxtComponent({
         this.reveal = false;
         this.resetAnswers();
       }
+    },
+    leapFowardFamilarity() {
+      if (!this.currentCard) return;
+
+      if (this.deck.reversed) {
+        this.currentCard.reverseFamilarity =
+          (MAX_FAMILARITY - this.currentCard.reverseFamilarity) *
+          (this.deck.correctAnswerLeap / 100.0);
+        this.currentCard.lastReverseReviewedAt = Date.now();
+      } else {
+        this.currentCard.familarity =
+          (MAX_FAMILARITY - this.currentCard.familarity) *
+          (this.deck.correctAnswerLeap / 100.0);
+        this.currentCard.lastReviewedAt = Date.now();
+      }
+      this.saveCurrentCard().then(() => {
+        this.moveToNextCard();
+      });
+    },
+    addPenaltyToCard(penatly: number) {
+      if (!this.currentCard) return;
+
+      if (this.deck.reversed) {
+        this.currentCard.reverseFamilarity *= penatly / 100.0;
+        this.currentCard.lastReverseReviewedAt = Date.now();
+      } else {
+        this.currentCard.familarity *= penatly / 100.0;
+        this.currentCard.lastReviewedAt = Date.now();
+      }
+      this.saveCurrentCard().then(() => {
+        this.moveToNextCard();
+      });
+    },
+    async saveCurrentCard() {
+      await db.cards.put(Object.assign({}, this.currentCard));
     },
     resetAnswers() {
       const editableDiv = this.$refs.editableInput as InstanceType<
