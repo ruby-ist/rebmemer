@@ -159,13 +159,8 @@ import type EditableDivInput from "~/components/EditableDivInput.vue";
 export default defineNuxtComponent({
   async setup() {
     const deck = ref(await useDeckFromParams());
-    const cards = ref(
-      await db.cards
-        .where("deckId")
-        .equals(deck.value.id)
-        .limit(deck.value.cardsPerRound)
-        .toArray(),
-    );
+    const allCards = await useCardsFromDeck(deck.value.id);
+    const cards = ref(fetchCardsToBePracticed(allCards, deck.value));
     return {
       deck,
       cards,
@@ -207,12 +202,12 @@ export default defineNuxtComponent({
       if (!this.currentCard) return;
 
       if (this.deck.reversed) {
-        this.currentCard.reverseFamilarity =
+        this.currentCard.reverseFamilarity +=
           (MAX_FAMILARITY - this.currentCard.reverseFamilarity) *
           (this.deck.correctAnswerLeap / 100.0);
         this.currentCard.lastReverseReviewedAt = Date.now();
       } else {
-        this.currentCard.familarity =
+        this.currentCard.familarity +=
           (MAX_FAMILARITY - this.currentCard.familarity) *
           (this.deck.correctAnswerLeap / 100.0);
         this.currentCard.lastReviewedAt = Date.now();
