@@ -10,7 +10,7 @@ const config: Partial<ModuleOptions> = {
     short_name: "Rebememer",
     start_url: "/decks",
     description: "Mobile first offline Spacial Repitation System as PWA",
-    theme_color: "#156394",
+    theme_color: "#232b5f",
     icons: [
       {
         src: "pwa-64x64.png",

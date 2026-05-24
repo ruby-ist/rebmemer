@@ -146,7 +146,8 @@ export default defineNuxtComponent({
       document.body.scrollTo({ top: 0, behavior: "smooth" });
     },
     moveSearchBarToTop() {
-      if (document.body.scrollTop > 290) return;
+      const threshold = 5;
+      if (document.body.scrollTop > 290 - threshold) return;
 
       document.body.scrollTo({ top: 290, behavior: "smooth" });
     },
