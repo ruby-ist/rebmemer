@@ -4,9 +4,9 @@
       <NuxtLink :to="`/decks/${deck.id}`" class="flex align-i-center">
         <backIcon class="w-24" />
       </NuxtLink>
-      <h2 class="m-0 color-green-one" font="w-600">Import Cards</h2>
+      <h1 class="m-0 color-green-one" font="w-555">Import Cards</h1>
     </nav>
-    <div class="mt-30 flex column gap-20">
+    <div class="mt-20 flex column gap-20">
       <div class="flex column gap-12">
         <label for="image" class="mb-10 block color-white-two" font="s-1.2rem">
           Choose File:

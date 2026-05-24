@@ -64,9 +64,19 @@
       />
     </div>
 
-    <fieldset border="color-green-two rad-15">
-      <legend class="color-green-two">Learning Settings</legend>
-      <div class="flex column gap-12">
+    <a
+      class="color-green-two flex align-i-center gap-4 pointer"
+      v-show="!showLearningSettings"
+      @click="showLearningSettings = true"
+    >
+      <ChevronIcon class="icon-color-white-two w-16" />
+      <span>Learning Settings</span>
+    </a>
+    <fieldset border="color-green-two rad-15" v-show="showLearningSettings">
+      <legend class="color-green-two" @click="showLearningSettings = false">
+        Learning Settings
+      </legend>
+      <div class="flex column gap-12 learning-settings">
         <div class="flex align-i-center just-c-space-between gap-10">
           <label for="cardsPerRound" class="color-white-two">
             Cards per practice:
@@ -233,6 +243,7 @@ export default defineNuxtComponent({
   },
   data: () => ({
     showFileInput: false,
+    showLearningSettings: false,
   }),
   methods: {
     async handleFormSubmission(event: Event) {
@@ -294,6 +305,26 @@ export default defineNuxtComponent({
         namePart.slice(namePart.length - back) +
         extension
       );
+    },
+  },
+  watch: {
+    showLearningSettings(newValue, oldValue) {
+      if (newValue && !oldValue) {
+        gsap.from("fieldset", {
+          height: 0,
+          duration: 0.5,
+          transformOrigin: "top center",
+          ease: "sine.out",
+        });
+        gsap.from(".learning-settings > div", {
+          opacity: 0,
+          duration: 0.4,
+          ease: "sine.inOut",
+          stagger: {
+            each: 0.1,
+          },
+        });
+      }
     },
   },
 });
