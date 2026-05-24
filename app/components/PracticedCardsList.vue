@@ -12,15 +12,7 @@
         stagger: {
           each: 0.15,
         },
-        onStart: function () {
-          gsap.killTweensOf('.progress-gradient');
-          gsap.from('.progress-gradient', {
-            clipPath: 'inset(0 100% 0 0)',
-            stagger: {
-              each: 0.15,
-            },
-          });
-        },
+        onStart: customProgressBarAnimation,
       }"
     >
       <Card
@@ -55,6 +47,19 @@ export default defineNuxtComponent({
     deck: {
       type: Object as PropType<Deck>,
       required: true,
+    },
+  },
+  methods: {
+    customProgressBarAnimation() {
+      // revert already started animation
+      gsap.getTweensOf(".progress-gradient")[0]?.revert();
+      gsap.killTweensOf(".progress-gradient");
+      gsap.from(".progress-gradient", {
+        clipPath: "inset(0 100% 0 0)",
+        stagger: {
+          each: 0.15,
+        },
+      });
     },
   },
 });

@@ -12,7 +12,7 @@ body {
 
 body {
   background:
-    linear-gradient(var(--indigo-one), var(--blue-one)), var(--blue-one);
+    linear-gradient(var(--indigo-one), var(--blue-one)), var(--indigo-one);
   color: var(--white-two);
   font-family: var(--default-font);
 

@@ -8,7 +8,7 @@
     <div class="flex just-c-center w-100p">
       <div class="bg-color-cyan-one h-3 w-36p" border="rad-50"></div>
     </div>
-    <div font="s-2rem">
+    <div font="s-2rem" class="pb-23">
       {{ deck.reversed ? card.question : card.answer }}
     </div>
     <div

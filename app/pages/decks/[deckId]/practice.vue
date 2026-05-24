@@ -120,6 +120,11 @@ export default defineNuxtComponent({
         this.currentCard = nextCard;
         this.reveal = false;
         this.resetAnswers();
+        const editableInput = this.$refs.editableInput as InstanceType<
+          typeof EditableDivInput
+        >;
+        if (editableInput)
+          (editableInput.$refs.answerInput as HTMLInputElement).focus();
       }
     },
     resetAnswers() {
