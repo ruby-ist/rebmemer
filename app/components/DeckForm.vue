@@ -1,5 +1,5 @@
 <template>
-  <form ref="form" class="flex column gap-16" font="s-1.15rem">
+  <form ref="form" class="flex column gap-16 pb-80" font="s-1.15rem">
     <div>
       <label for="name" class="mb-10 block color-white-two"> Deck Name: </label>
 

@@ -4,7 +4,7 @@
       <NuxtLink :to="`/cards/${card.id}`" class="flex align-i-center">
         <backIcon class="w-24" />
       </NuxtLink>
-      <h2 class="m-0 color-green-one" font="w-600">Edit Card</h2>
+      <h1 class="m-0 color-green-one" font="w-555">Edit Card</h1>
     </nav>
     <div class="p-10-0">
       <CardForm :card="card" :deck="deck" />
