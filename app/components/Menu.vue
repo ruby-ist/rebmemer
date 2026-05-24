@@ -3,6 +3,7 @@
     <button
       class="no-bg no-outline border-none relative z-2"
       @click="showMenu = true"
+      v-show="!showMenu"
     >
       <threeBarsIcon class="w-24 pointer" />
     </button>
