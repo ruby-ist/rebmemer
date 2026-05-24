@@ -13,7 +13,7 @@
         duration: 0.1,
         opacity: 0,
         transformOrigin: 'top right',
-        ease: 'sine.out',
+        ease: 'circ.out',
       }"
     >
       <div
