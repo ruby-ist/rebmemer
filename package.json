@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@vite-pwa/nuxt": "1.1.1",
     "dexie": "^4.4.2",
     "nuxt": "^4.4.2",
     "v-gsap-nuxt": "1.5.12",
