@@ -12,7 +12,7 @@
         font="s-1.15rem w-425 f-default-font"
         autocomplete="off"
         required
-        :value="deck.name || ''"
+        v-model="deck.name"
       />
     </div>
 
@@ -29,7 +29,7 @@
         font="s-1.15rem w-425 f-default-font"
         autocomplete="off"
         required
-        :value="deck.description || ''"
+        v-model="deck.description"
       />
     </div>
 
@@ -67,7 +67,7 @@
     <a
       class="color-green-two flex align-i-center gap-4 pointer"
       v-show="!showLearningSettings"
-      @click="showLearningSettings = true"
+      @click="openLearningSettings"
     >
       <ChevronIcon class="icon-color-white-two w-16" />
       <span>Learning Settings</span>
@@ -310,25 +310,23 @@ export default defineNuxtComponent({
         extension
       );
     },
-  },
-  watch: {
-    showLearningSettings(newValue, oldValue) {
-      if (newValue && !oldValue) {
-        gsap.from("fieldset", {
-          height: 0,
-          duration: 0.5,
-          transformOrigin: "top center",
-          ease: "sine.out",
-        });
-        gsap.from(".learning-settings > div", {
-          opacity: 0,
-          duration: 0.4,
-          ease: "sine.inOut",
-          stagger: {
-            each: 0.1,
-          },
-        });
-      }
+
+    openLearningSettings() {
+      this.showLearningSettings = true;
+      gsap.from("fieldset", {
+        height: 0,
+        duration: 0.5,
+        transformOrigin: "top center",
+        ease: "sine.out",
+      });
+      gsap.from(".learning-settings > div", {
+        opacity: 0,
+        duration: 0.4,
+        ease: "sine.inOut",
+        stagger: {
+          each: 0.1,
+        },
+      });
     },
   },
 });

@@ -20,22 +20,26 @@
 export default defineNuxtComponent({
   data: () => ({
     decks: [] as globalThis.Deck[],
-    lastPracticedAtTime: {} as {
-      [key: number]: number;
-    },
-    cardCounts: {} as {
-      [key: number]: number;
-    },
+    lastPracticedAtTime: {} as { [key: number]: number },
+    cardCounts: {} as { [key: number]: number },
   }),
-  async mounted() {
-    this.decks = await db.decks.toArray();
+  async created() {
+    const decks = await db.decks.toArray();
+
+    const cardCounts = {} as { [key: number]: number };
+    const lastPracticedAtTime = {} as { [key: number]: number };
+
     await db.cards
       .orderBy("lastReviewedAt")
       .reverse()
       .each((card) => {
-        this.lastPracticedAtTime[card.deckId] ||= card.lastReviewedAt;
-        this.cardCounts[card.deckId] = (this.cardCounts[card.deckId] || 0) + 1;
+        lastPracticedAtTime[card.deckId] ||= card.lastReviewedAt;
+        cardCounts[card.deckId] = (cardCounts[card.deckId] || 0) + 1;
       });
+
+    this.decks = decks;
+    this.cardCounts = cardCounts;
+    this.lastPracticedAtTime = lastPracticedAtTime;
   },
 });
 </script>

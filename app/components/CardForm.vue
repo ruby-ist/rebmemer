@@ -23,7 +23,7 @@
         font="s-1.15rem w-425 f-default-font"
         autocomplete="off"
         required
-        :value="card.question || ''"
+        v-model="card.question"
       />
     </div>
 
@@ -38,7 +38,7 @@
         font="s-1.15rem w-425 f-default-font"
         autocomplete="off"
         required
-        :value="card.answer || ''"
+        v-model="card.answer"
       />
     </div>
 

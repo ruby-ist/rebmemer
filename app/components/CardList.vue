@@ -152,6 +152,8 @@ export default defineNuxtComponent({
     },
   },
   mounted() {
+    this.sortByKey = localStorage.getItem("sortByKey") || "createdAt";
+    this.sortByAsc = JSON.parse(localStorage.getItem("sortByAsc") || "true");
     document.body.addEventListener("scroll", this.scrollEvent);
     document.body.scrollTo({ top: 0, behavior: "auto" });
   },
@@ -176,6 +178,12 @@ export default defineNuxtComponent({
         else if (this.sortByKey === "lastReverseReviewedAt")
           this.sortByKey = "lastReviewedAt";
       }
+    },
+    sortByKey(newValue) {
+      localStorage.setItem("sortByKey", newValue);
+    },
+    sortByAsc(newValue) {
+      localStorage.setItem("sortByAsc", newValue ? "true" : "false");
     },
   },
 });
