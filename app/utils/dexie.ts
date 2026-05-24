@@ -34,8 +34,7 @@ const db = new Dexie("rebmemer") as Dexie & {
 
 db.version(1).stores({
   decks: "++id, &name",
-  cards:
-    "++id, question, answer, familarity, reverseFamilarity, lastReviewedAt, deckId",
+  cards: "++id, lastReviewedAt, deckId",
 });
 
 export type { Deck, Card };

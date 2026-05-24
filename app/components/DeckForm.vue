@@ -255,13 +255,17 @@ export default defineNuxtComponent({
         new FormData(formElement),
       ) as unknown as Deck;
 
-      if (this.deck.id) {
-        this.checkImageAndAddId(formData);
-        await db.decks.put(formData);
-        navigateTo(`/decks/${this.deck.id}`);
-      } else {
-        await db.decks.add(formData);
-        navigateTo("/decks");
+      try {
+        if (this.deck.id) {
+          this.checkImageAndAddId(formData);
+          await db.decks.put(formData);
+          navigateTo(`/decks/${this.deck.id}`);
+        } else {
+          await db.decks.add(formData);
+          navigateTo("/decks");
+        }
+      } catch (e) {
+        alert("a Deck with the same name already exists!");
       }
     },
 
