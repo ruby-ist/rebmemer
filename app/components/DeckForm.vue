@@ -64,26 +64,29 @@
       />
     </div>
 
-    <div class="flex align-i-center gap-10">
-      <label for="cardsPerRound" class="color-white-two">
-        Cards to practice per session:
-      </label>
-      <input
-        type="number"
-        id="cardsPerRound"
-        name="cardsPerRound"
-        class="bg-color-blue-one [&:focus]:no-outline color-green-two p-2-6 w-72 box-size-border-box"
-        border="1 solid color-cyan-one rad-5"
-        font="s-1.1rem f-default-font"
-        required
-        min="1"
-        :value="deck.cardsPerRound || 20"
-      />
-    </div>
-
     <fieldset border="color-green-two rad-15">
       <legend class="color-green-two">Learning Settings</legend>
-      <div class="flex column gap-10">
+      <div class="flex column gap-12">
+        <div class="flex align-i-center just-c-space-between gap-10">
+          <label for="cardsPerRound" class="color-white-two">
+            Cards per practice:
+          </label>
+          <div>
+            <input
+              type="number"
+              id="cardsPerRound"
+              name="cardsPerRound"
+              class="bg-color-blue-one [&:focus]:no-outline color-green-two p-2-6 w-72 box-size-border-box"
+              border="1 solid color-cyan-one rad-5"
+              font="s-1.1rem f-default-font"
+              required
+              min="1"
+              :value="deck.cardsPerRound || 20"
+            />
+            <span class="ml-6 opacity-0">%</span>
+          </div>
+        </div>
+
         <div class="flex align-i-center just-c-space-between gap-10">
           <label for="retentionExpansionBase" class="color-white-two">
             Review interval scaling:
@@ -119,7 +122,7 @@
               font="s-1.1rem f-default-font"
               required
               min="1"
-              :value="deck.correctAnswerLeap || 25"
+              :value="deck.correctAnswerLeap || 20"
             />
             <span class="ml-6">%</span>
           </div>

@@ -1,5 +1,5 @@
 <template>
-  <main v-if="deck && currentCard" @click="closeRevealPopUp">
+  <main v-if="deck && currentCard">
     <nav
       class="p-18-0 flex just-c-space-between align-i-center icon-color-white-two"
     >
@@ -66,89 +66,28 @@
         </button>
       </div>
       <div
-        v-show="reveal"
-        ref="revealPopUp"
-        class="absolute b-0 l-0 z-1 w-100vw p-20-20-60 bg-color-blue-two flex column align-i-center just-c-center gap-40 icon-color-indigo-one box-size-border-box"
-        style="box-shadow: 0 0 300px 0px var(--indigo-one)"
-        border="rad-6p-6p-0-0"
-        border-t="1 solid color-cyan-one "
+        v-if="reveal"
+        class="absolute h-100dvh w-100dvw t-0 l-0 z-0"
+        @click="reveal = false"
+      ></div>
+      <GSAPTransition
+        :hidden="{ y: '100%', duration: 0.4, opacity: 1, ease: 'sine.out' }"
       >
-        <div class="flex just-c-center w-100p">
-          <div class="bg-color-cyan-one h-3 w-36p" border="rad-50"></div>
-        </div>
-        <div font="s-2rem">
-          {{ deck.reversed ? currentCard.question : currentCard.answer }}
-        </div>
-        <div class="flex align-i-center just-c-space-evenly w-100p">
-          <div class="flex align-i-center column gap-8">
-            <button
-              @click="addPenaltyToCard(deck.forgottenAnswerPenalty)"
-              class="bg-color-green-two p-13 pointer"
-              border="1 solid color-indigo-one rad-10"
-            >
-              <questionIcon class="w-32 h-32 -mb-3" />
-            </button>
-            <span class="color-green-two" font="w-480">Forgot</span>
-          </div>
-          <div class="flex align-i-center column gap-8">
-            <button
-              @click="addPenaltyToCard(deck.wrongAnswerPenalty)"
-              class="bg-color-green-two p-9 pointer"
-              border="1 solid color-indigo-one rad-10"
-            >
-              <wrongIcon class="w-40 h-40 -mb-3" />
-            </button>
-            <span class="color-green-two" font="w-480">Wrong</span>
-          </div>
-          <div class="flex align-i-center column gap-8">
-            <button
-              @click="addPenaltyToCard(deck.partialAnswerPenalty)"
-              class="bg-color-green-two p-14 pointer"
-              border="1 solid color-indigo-one rad-10"
-            >
-              <partialIcon class="w-30 h-30 -mb-3" />
-            </button>
-            <span class="color-green-two" font="w-480">Partial</span>
-          </div>
-          <div class="flex align-i-center column gap-8">
-            <button
-              @click="leapFowardFamilarity"
-              class="bg-color-green-two p-16 pointer"
-              border="1 solid color-indigo-one rad-10"
-            >
-              <tickIcon class="w-26 h-26 -mb-3" />
-            </button>
-            <span class="color-green-two" font="w-480">Correct</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div v-else class="mt-24 pb-64">
-      <div
-        class="flex column p-0-16"
-        border="1 solid color-cyan-one rad-16"
-        font="s-1.1rem w-500"
-      >
-        <Card
-          v-for="card in cardsCopy"
-          :key="card.id"
-          :card="card"
-          class="[&:last-child]:border-none"
-          :reversed="deck.reversed"
-          :link="false"
+        <AssessmentPopup
+          v-if="reveal"
+          ref="revealPopUp"
+          :card="currentCard"
+          :deck="deck"
+          @next="moveToNextCard"
         />
-      </div>
-      <div class="w-100p grid place-i-center">
-        <button
-          @click="navigateTo(`/decks/${deck.id}`)"
-          class="bg-color-green-two color-indigo-one p-12-24 pointer mt-28 w-100p"
-          border="1px solid color-indigo-one rad-10"
-          font="s-1.35rem w-475 f-default-font"
-        >
-          Done
-        </button>
-      </div>
+      </GSAPTransition>
     </div>
+    <PracticedCardsList
+      v-else
+      class="mt-24 pb-64"
+      :cards="cardsCopy"
+      :deck="deck"
+    />
   </main>
 </template>
 
@@ -172,21 +111,6 @@ export default defineNuxtComponent({
     };
   },
   methods: {
-    closeRevealPopUp(e: Event) {
-      const revealPopUp = this.$refs.revealPopUp as HTMLElement;
-      const revealButton = this.$refs.revealButton as HTMLElement;
-      const doneButton = (
-        this.$refs.editableInput as InstanceType<typeof EditableDivInput>
-      )?.$refs.doneButton as HTMLElement;
-      const clickedElement = e.target as HTMLElement;
-
-      if (
-        !revealPopUp?.contains(clickedElement) &&
-        !revealButton?.contains(clickedElement) &&
-        !doneButton?.contains(clickedElement)
-      )
-        this.reveal = false;
-    },
     moveToNextCard() {
       const nextCard = this.cards.shift();
       if (!nextCard) {
@@ -197,41 +121,6 @@ export default defineNuxtComponent({
         this.reveal = false;
         this.resetAnswers();
       }
-    },
-    leapFowardFamilarity() {
-      if (!this.currentCard) return;
-
-      if (this.deck.reversed) {
-        this.currentCard.reverseFamilarity +=
-          (MAX_FAMILARITY - this.currentCard.reverseFamilarity) *
-          (this.deck.correctAnswerLeap / 100.0);
-        this.currentCard.lastReverseReviewedAt = Date.now();
-      } else {
-        this.currentCard.familarity +=
-          (MAX_FAMILARITY - this.currentCard.familarity) *
-          (this.deck.correctAnswerLeap / 100.0);
-        this.currentCard.lastReviewedAt = Date.now();
-      }
-      this.saveCurrentCard().then(() => {
-        this.moveToNextCard();
-      });
-    },
-    addPenaltyToCard(penatly: number) {
-      if (!this.currentCard) return;
-
-      if (this.deck.reversed) {
-        this.currentCard.reverseFamilarity *= penatly / 100.0;
-        this.currentCard.lastReverseReviewedAt = Date.now();
-      } else {
-        this.currentCard.familarity *= penatly / 100.0;
-        this.currentCard.lastReviewedAt = Date.now();
-      }
-      this.saveCurrentCard().then(() => {
-        this.moveToNextCard();
-      });
-    },
-    async saveCurrentCard() {
-      await db.cards.put(Object.assign({}, this.currentCard));
     },
     resetAnswers() {
       const editableDiv = this.$refs.editableInput as InstanceType<

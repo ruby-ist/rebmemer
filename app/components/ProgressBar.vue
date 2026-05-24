@@ -1,6 +1,12 @@
 <template>
   <div class="h-16 w-34 relative p-3" border="rad-6 1 solid color-cyan-one">
-    <div class="progress-gradient h-100p w-100p" border="rad-4"></div>
+    <div
+      class="progress-gradient h-100p w-100p"
+      border="rad-4"
+      v-gsap.from="{
+        clipPath: 'inset(0 100% 0 0)',
+      }"
+    ></div>
   </div>
 </template>
 

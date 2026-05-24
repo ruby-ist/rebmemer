@@ -11,7 +11,7 @@ export default defineNuxtConfig({
     "~/components",
   ],
   devtools: { enabled: true },
-  modules: ["@unocss/nuxt"],
+  modules: ["@unocss/nuxt", "v-gsap-nuxt"],
   ssr: false,
   unocss: unoConfig,
 });
