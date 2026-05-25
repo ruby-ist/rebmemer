@@ -1,5 +1,5 @@
 <template>
-  <div class="icon-color-green-two min-h-98dvh">
+  <div class="icon-color-green-two min-h-98dvh pb-52">
     <div class="flex align-i-center just-c-space-between mb-10">
       <h2 class="m-0 color-green-two" font="w-475">Cards</h2>
       <NuxtLink :to="`/decks/${deck.id}/cards/new`">
