@@ -32,7 +32,7 @@
             <button
               class="p-8 -mr-1 pointer"
               :class="{
-                'no-bg icon-color-green-two': !canva,
+                'no-bg icon-color-green-one': !canva,
                 'bg-color-green-two icon-color-blue-one': canva,
               }"
               border="2 solid color-green-two rad-8-0-0-8"
@@ -43,7 +43,7 @@
             <button
               class="p-8 pointer"
               :class="{
-                'no-bg icon-color-green-two': canva,
+                'no-bg icon-color-green-one': canva,
                 'bg-color-green-two icon-color-blue-one': !canva,
               }"
               border="2 solid color-green-two rad-0-8-8-0"
@@ -58,7 +58,7 @@
         <button
           @click="reveal = true"
           ref="revealButton"
-          class="bg-color-green-two color-indigo-one p-12-24 pointer mt-28"
+          class="bg-color-green-two color-indigo-one p-12-24 pointer mt-28 active:bg-color-green-one active:scale-96"
           border="1px solid color-indigo-one rad-10"
           font="s-1.35rem w-475 f-default-font"
         >

@@ -56,7 +56,7 @@
       class="block m-20-0"
     >
       <button
-        class="bg-color-green-one color-indigo-one w-100p p-10 pointer"
+        class="bg-color-green-one color-indigo-one w-100p p-10 pointer active:bg-color-green-two active:scale-96"
         border="none rad-10"
         font="s-1.5rem w-475 f-default-font"
       >

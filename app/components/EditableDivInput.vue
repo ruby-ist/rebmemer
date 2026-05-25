@@ -5,7 +5,7 @@
       class="absolute r-12 t-12 flex align-i-center gap-4"
     >
       <button
-        class="bg-color-green-two no-outline border-none pointer p-8 grid place-i-center icon-color-blue-one"
+        class="bg-color-green-two no-outline border-none pointer p-8 grid place-i-center icon-color-blue-one active:bg-color-green-one active:scale-96"
         border="rad-10"
         ref="doneButton"
         @click="addNewLine"

@@ -20,14 +20,14 @@
     >
       <div class="flex gap-4">
         <button
-          class="bg-color-green-two no-bg no-outline border-none pointer p-4-8 icon-color-green-two"
+          class="no-bg no-outline border-none pointer p-4-8 icon-color-green-two"
           border="rad-10"
           @click="clearCanvas"
         >
           <eraseIcon class="w-28 h-28" />
         </button>
         <button
-          class="bg-color-green-two no-bg no-outline border-none pointer p-4-8 icon-color-green-two"
+          class="no-bg no-outline border-none pointer p-4-8 icon-color-green-two"
           border="rad-10"
           @click="undo"
         >

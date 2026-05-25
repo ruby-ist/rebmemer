@@ -27,7 +27,7 @@
     <div class="w-100p grid place-i-center">
       <button
         @click="navigateTo(`/decks/${deck.id}`)"
-        class="bg-color-green-two color-indigo-one p-12-24 pointer mt-28 w-100p"
+        class="bg-color-green-two color-indigo-one p-12-24 pointer mt-28 w-100p active:bg-color-green-one active:scale-96"
         border="1px solid color-indigo-one rad-10"
         font="s-1.35rem w-475 f-default-font"
       >

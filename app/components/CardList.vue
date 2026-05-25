@@ -76,7 +76,7 @@
     <button
       @click="scrollToTop"
       v-if="showScrollButton"
-      class="fixed t-86dvh r-16 bg-color-green-two p-16 grid place-i-center pointer"
+      class="fixed t-86dvh r-16 bg-color-green-two p-16 grid place-i-center pointer active:bg-color-green-one active:scale-96"
       border="none rad-50"
     >
       <MoveToTopIcon class="icon-color-indigo-one w-28 h-28" />

@@ -27,40 +27,40 @@
       <div class="flex align-i-center column gap-8">
         <button
           @click="addPenaltyToCard(deck.forgottenAnswerPenalty)"
-          class="bg-color-green-two p-13 pointer"
+          class="bg-color-green-two p-15 pointer active:bg-color-green-one active:scale-96"
           border="1 solid color-indigo-one rad-10"
         >
-          <questionIcon class="w-32 h-32 -mb-3" />
+          <questionIcon class="w-28 h-28 -mb-3" />
         </button>
         <span class="color-green-two" font="w-480">Forgot</span>
       </div>
       <div class="flex align-i-center column gap-8">
         <button
           @click="addPenaltyToCard(deck.wrongAnswerPenalty)"
-          class="bg-color-green-two p-9 pointer"
+          class="bg-color-green-two p-12 pointer active:bg-color-green-one active:scale-96"
           border="1 solid color-indigo-one rad-10"
         >
-          <wrongIcon class="w-40 h-40 -mb-3" />
+          <wrongIcon class="w-34 h-34 -mb-3" />
         </button>
         <span class="color-green-two" font="w-480">Wrong</span>
       </div>
       <div class="flex align-i-center column gap-8">
         <button
           @click="addPenaltyToCard(deck.partialAnswerPenalty)"
-          class="bg-color-green-two p-14 pointer"
+          class="bg-color-green-two p-17-15 pointer active:bg-color-green-one active:scale-96"
           border="1 solid color-indigo-one rad-10"
         >
-          <partialIcon class="w-30 h-30 -mb-3" />
+          <partialIcon class="w-28 h-24 -mb-3" />
         </button>
         <span class="color-green-two" font="w-480">Partial</span>
       </div>
       <div class="flex align-i-center column gap-8">
         <button
           @click="leapFowardFamilarity"
-          class="bg-color-green-two p-16 pointer"
+          class="bg-color-green-two p-20 pointer active:bg-color-green-one active:scale-96"
           border="1 solid color-indigo-one rad-10"
         >
-          <tickIcon class="w-26 h-26 -mb-3" />
+          <tickIcon class="w-20 h-20 -mb-3" />
         </button>
         <span class="color-green-two" font="w-480">Correct</span>
       </div>

@@ -46,4 +46,11 @@ export default [
   // opt out animation
   ["no-transform", { transform: "none" }],
   ["no-transition", { transition: "none" }],
+
+  [
+    /scale-(\.\d)+/,
+    ([, value]) => {
+      transform: `scale(${value})`;
+    },
+  ],
 ] as Rule[];
