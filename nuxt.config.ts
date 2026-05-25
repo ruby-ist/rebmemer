@@ -4,6 +4,7 @@ import pwaConfig from "./pwa.config";
 
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
+  css: ["~/assets/css/main.css"],
   components: [
     {
       path: "~/components/icons",

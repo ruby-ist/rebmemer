@@ -1,5 +1,5 @@
 <template>
-  <form ref="form" class="flex column gap-16 pb-80" font="s-1.15rem">
+  <form ref="form" class="flex column gap-18 pb-80" font="s-1.15rem">
     <div>
       <label for="name" class="mb-10 block color-white-two"> Deck Name: </label>
 
@@ -78,9 +78,12 @@
       </legend>
       <div class="flex column gap-12 learning-settings">
         <div class="flex align-i-center just-c-space-between gap-10">
-          <label for="cardsPerRound" class="color-white-two">
-            Cards per practice:
-          </label>
+          <div class="flex align-i-center gap-4">
+            <label for="cardsPerRound" class="color-white-two">
+              Cards per practice:
+            </label>
+            <InfoTooltip content="Number of cards to practice per session." />
+          </div>
           <div>
             <input
               type="number"
@@ -98,9 +101,14 @@
         </div>
 
         <div class="flex align-i-center just-c-space-between gap-10">
-          <label for="retentionExpansionBase" class="color-white-two">
-            Review interval scaling:
-          </label>
+          <div class="flex align-i-center gap-4">
+            <label for="retentionExpansionBase" class="color-white-two">
+              Review interval scaling:
+            </label>
+            <InfoTooltip
+              content="Adjusts review frequency. Higher = longer breaks between words you know well (faster pacing). Lower = shorter breaks (safer, high-repetition pacing)."
+            />
+          </div>
           <div>
             <input
               type="number"
@@ -119,9 +127,14 @@
         </div>
 
         <div class="flex align-i-center just-c-space-between gap-10">
-          <label for="correctAnswerLeap" class="color-white-two">
-            Familarity leap:
-          </label>
+          <div class="flex align-i-center gap-4">
+            <label for="correctAnswerLeap" class="color-white-two">
+              Familarity leap:
+            </label>
+            <InfoTooltip
+              content="Controls how quickly new words climb toward mastery when answered correctly. Higher percentages accelerate your progress so you see successful words less often. Lower percentages keep them in the short-term loop longer to ensure they stick."
+            />
+          </div>
           <div>
             <input
               type="number"
@@ -139,9 +152,14 @@
         </div>
 
         <div class="flex align-i-center just-c-space-between gap-10">
-          <label for="partialAnswerPenalty" class="color-white-two">
-            Partial penalty:
-          </label>
+          <div class="flex align-i-center gap-4">
+            <label for="partialAnswerPenalty" class="color-white-two">
+              Partial penalty:
+            </label>
+            <InfoTooltip
+              content="The memory tax applied when you answer paritally with struggling, guessing or took a long time to recall. This pulls the word back slightly in rotation so it gets reinforced sooner."
+            />
+          </div>
           <div>
             <input
               type="number"
@@ -159,9 +177,14 @@
         </div>
 
         <div class="flex align-i-center just-c-space-between gap-10">
-          <label for="wrongAnswerPenalty" class="color-white-two">
-            Wrong penalty:
-          </label>
+          <div class="flex align-i-center gap-4">
+            <label for="wrongAnswerPenalty" class="color-white-two">
+              Wrong penalty:
+            </label>
+            <InfoTooltip
+              content="The standard penalty applied when you give an incorrect answer using an invalid reading, or mixing up vocabulary. It steps your progress back significantly to ensure the word is retested soon."
+            />
+          </div>
           <div>
             <input
               type="number"
@@ -179,9 +202,14 @@
         </div>
 
         <div class="flex align-i-center just-c-space-between gap-10">
-          <label for="forgottenAnswerPenalty" class="color-white-two">
-            Forgotten penalty:
-          </label>
+          <div class="flex align-i-center gap-4">
+            <label for="forgottenAnswerPenalty" class="color-white-two">
+              Forgotten penalty:
+            </label>
+            <InfoTooltip
+              content="The heavy penalty applied when you draw an absolute blank and have zero recognition of the word. This aggressively drops its familiarity back toward beginner status, surging its urgency so you can relearn it immediately."
+            />
+          </div>
           <div>
             <input
               type="number"
@@ -192,16 +220,21 @@
               font="s-1.1rem f-default-font"
               required
               min="1"
-              :value="deck.forgottenAnswerPenalty || 60"
+              :value="deck.forgottenAnswerPenalty || 90"
             />
             <span class="ml-6">%</span>
           </div>
         </div>
 
         <div class="flex align-i-center just-c-space-between gap-10">
-          <label for="newCardsRatio" class="color-white-two">
-            New cards Ratio:
-          </label>
+          <div class="flex align-i-center gap-4">
+            <label for="newCardsRatio" class="color-white-two">
+              New cards Ratio:
+            </label>
+            <InfoTooltip
+              content="Controls the balance of your review queue. This percentage dictates how much of your session is dedicated to introducing brand-new words versus reviewing older ones."
+            />
+          </div>
           <div>
             <input
               type="number"
