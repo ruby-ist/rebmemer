@@ -9,7 +9,7 @@ export function reviewedAtAsString(date: number) {
 }
 
 export function fetchCardsToBePracticed(cards: Card[], deck: Deck) {
-  const [newCards, existingCards] = partitionCardsByReviewDate(cards, deck);
+  const [newCards, existingCards] = partitionCardsByFamilarity(cards, deck);
   const sortedExistingCards = sortCardsByUrgency(existingCards, deck);
   var newCardsCount = numberOfNewCardsToBeIncluded(deck);
   if (existingCards.length < deck.cardsPerRound - newCardsCount)
@@ -21,16 +21,14 @@ export function fetchCardsToBePracticed(cards: Card[], deck: Deck) {
   ]);
 }
 
-function partitionCardsByReviewDate(
+function partitionCardsByFamilarity(
   cards: Card[],
   deck: Deck,
 ): [Card[], Card[]] {
   return cards.reduce(
     (acc, card) => {
       acc[
-        (deck.reversed ? card.lastReverseReviewedAt : card.lastReviewedAt) === 0
-          ? 0
-          : 1
+        (deck.reversed ? card.reverseFamilarity : card.familarity) === 0 ? 0 : 1
       ].push(card);
       return acc;
     },

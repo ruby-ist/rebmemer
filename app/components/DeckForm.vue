@@ -203,31 +203,6 @@
 
         <div class="flex align-i-center just-c-space-between gap-10">
           <div class="flex align-i-center gap-4">
-            <label for="forgottenAnswerPenalty" class="color-white-two">
-              Forgotten penalty:
-            </label>
-            <InfoTooltip
-              content="The heavy penalty applied when you draw an absolute blank and have zero recognition of the word. This aggressively drops its familiarity back toward beginner status, surging its urgency so you can relearn it immediately."
-            />
-          </div>
-          <div>
-            <input
-              type="number"
-              id="forgottenAnswerPenalty"
-              name="forgottenAnswerPenalty"
-              class="bg-color-blue-one [&:focus]:no-outline color-green-two p-2-6 w-72 box-size-border-box"
-              border="1 solid color-cyan-one rad-5"
-              font="s-1.1rem f-default-font"
-              required
-              min="1"
-              :value="deck.forgottenAnswerPenalty || 90"
-            />
-            <span class="ml-6">%</span>
-          </div>
-        </div>
-
-        <div class="flex align-i-center just-c-space-between gap-10">
-          <div class="flex align-i-center gap-4">
             <label for="newCardsRatio" class="color-white-two">
               New cards Ratio:
             </label>

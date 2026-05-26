@@ -11,7 +11,6 @@ interface Deck {
   correctAnswerLeap: number;
   partialAnswerPenalty: number;
   wrongAnswerPenalty: number;
-  forgottenAnswerPenalty: number;
   newCardsRatio: number;
 }
 

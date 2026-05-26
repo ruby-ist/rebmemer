@@ -26,7 +26,7 @@
     >
       <div class="flex align-i-center column gap-8">
         <button
-          @click="addPenaltyToCard(deck.forgottenAnswerPenalty)"
+          @click="addPenaltyToCard(0)"
           class="bg-color-green-two p-15 pointer active:bg-color-green-one active:scale-96"
           border="1 solid color-indigo-one rad-10"
         >
