@@ -2,7 +2,7 @@ export const MAX_FAMILARITY = 10;
 
 export function reviewedAtAsString(date: number) {
   if (date !== 0) {
-    return new Date(date).toLocaleString();
+    return formatTimestamp(date);
   } else {
     return "---";
   }

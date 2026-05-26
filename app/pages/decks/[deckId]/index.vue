@@ -84,7 +84,7 @@ export default defineNuxtComponent({
       const lastPracticedCard = this.cards.sort(
         (a, b) => b.lastReviewedAt - a.lastReviewedAt,
       )[0];
-      return lastPracticedCard ? lastPracticedCard.lastReviewedAt : null;
+      return lastPracticedCard ? lastPracticedCard.lastReviewedAt : 0;
     },
   },
   methods: {
@@ -140,7 +140,7 @@ export default defineNuxtComponent({
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = `${this.deck.name}_${new Date(this.lastPracticedAt!).toISOString()}.csv`;
+      a.download = `${this.deck.name}_${this.lastPracticedAt ? new Date(this.lastPracticedAt).toISOString() : "new"}.csv`;
       a.click();
       URL.revokeObjectURL(url);
     },

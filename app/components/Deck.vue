@@ -1,5 +1,5 @@
 <template>
-  <div class="w-46p flex column gap-10">
+  <div class="w-[calc(50%-10px)] flex column gap-10">
     <NuxtLink :to="`/decks/${deck.id}`" class="color-white-two">
       <div ref="deckImage" class="w-100p h-200 bd-rad-10 relative">
         <div class="absolute b-5p r-10p" font="w-600">
@@ -17,9 +17,7 @@
       <div class="icon-color-white-three flex align-i-center gap-4">
         <ClockIcon class="w-10" />
         <div class="color-white-three" font="s-0.75rem">
-          {{
-            lastPracticedAt ? new Date(lastPracticedAt).toLocaleString() : "---"
-          }}
+          {{ reviewedAtAsString(lastPracticedAt) }}
         </div>
       </div>
     </div>
@@ -38,7 +36,7 @@ export default defineNuxtComponent({
       required: true,
     },
     lastPracticedAt: {
-      type: [Number, null],
+      type: Number,
       required: true,
     },
   },

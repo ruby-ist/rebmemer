@@ -56,7 +56,7 @@
       <div class="flex gap-8 align-i-center">
         <div class="color-white-three">Created at:</div>
         <div font="s-0.96rem">
-          {{ new Date(card.createdAt).toLocaleString() }}
+          {{ formatTimestamp(card.createdAt) }}
         </div>
       </div>
       <div class="flex gap-8 align-i-center">

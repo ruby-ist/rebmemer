@@ -3,13 +3,13 @@
     <nav class="p-14-0">
       <h1 class="m-0 color-green-one" font="w-600">Decks</h1>
     </nav>
-    <div class="p-10-0-100 flex wrap row gap-20-8p">
+    <div class="p-10-0-100 flex wrap row gap-20">
       <Deck
         v-for="deck in decks"
         :key="deck.id"
         :deck="deck"
         :cardCount="cardCounts[deck.id] || 0"
-        :lastPracticedAt="lastPracticedAtTime[deck.id] || null"
+        :lastPracticedAt="lastPracticedAtTime[deck.id] || 0"
       />
     </div>
     <AddDeckButton />

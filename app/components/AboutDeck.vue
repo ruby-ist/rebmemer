@@ -11,9 +11,7 @@
     <div class="flex row gap-4 align-i-center">
       <h4 class="m-0" font="w-475">Last practiced:</h4>
       <div class="mt-2" font="s-0.85rem">
-        {{
-          lastPracticedAt ? new Date(lastPracticedAt).toLocaleString() : "---"
-        }}
+        {{ reviewedAtAsString(lastPracticedAt) }}
       </div>
     </div>
   </div>
@@ -31,7 +29,7 @@ export default defineNuxtComponent({
       required: true,
     },
     lastPracticedAt: {
-      type: [Number, null],
+      type: Number,
       required: true,
     },
   },
