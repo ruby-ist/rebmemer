@@ -122,11 +122,11 @@ export default defineNuxtComponent({
             card.question,
             card.answer,
             card.familarity,
-            card.lastReviewedAt === 0
+            card.lastReviewedAt !== 0
               ? new Date(card.lastReviewedAt).toISOString()
               : "",
             card.reverseFamilarity,
-            card.lastReverseReviewedAt === 0
+            card.lastReverseReviewedAt !== 0
               ? new Date(card.lastReverseReviewedAt).toISOString()
               : "",
           ].join("|"),
