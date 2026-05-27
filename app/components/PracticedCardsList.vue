@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-24 pb-64">
+  <div class="mt-12 pb-64">
     <div
       class="flex column p-0-16"
       border="1 solid color-cyan-one rad-16"
