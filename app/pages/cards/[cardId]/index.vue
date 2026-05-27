@@ -4,9 +4,9 @@
       class="p-18-0 flex mb-6 just-c-space-between align-i-center relative icon-color-white-two"
     >
       <div class="flex align-i-center gap-6">
-        <NuxtLink :to="`/decks/${card.deckId}`" class="flex align-i-center">
-          <backIcon class="w-24 pointer" />
-        </NuxtLink>
+        <a @click="$router.back()" class="flex align-i-center pointer">
+          <backIcon class="w-24" />
+        </a>
         <h1 class="m-0 color-green-one" font="w-555">
           Card <span class="color-white-two">#{{ card.id }}</span>
         </h1>
@@ -92,7 +92,7 @@ export default defineNuxtComponent({
     async deleteCard() {
       if (confirm("Are you sure that you want to delete this card?"))
         db.cards.delete(this.card!.id).then(() => {
-          navigateTo(`/decks/${this.card!.deckId}`);
+          this.$router.back();
         });
     },
   },

@@ -1,9 +1,9 @@
 <template>
   <main v-if="deck">
     <nav class="p-18-0 flex align-i-center gap-6 icon-color-white-two">
-      <NuxtLink :to="`/decks/${deck.id}`" class="flex align-i-center">
+      <a @click="$router.back()" class="flex align-i-center pointer">
         <backIcon class="w-24" />
-      </NuxtLink>
+      </a>
       <h1 class="m-0 color-green-one" font="w-555">Import Cards</h1>
     </nav>
     <div class="mt-20 flex column gap-20">
@@ -58,7 +58,7 @@ export default defineNuxtComponent({
 
         const cards = data.map((row) => this.convertRowToCard(row));
         await db.cards.bulkAdd(cards);
-        navigateTo(`/decks/${this.deck.id}`);
+        this.$router.back();
       } catch (e) {
         alert(e);
       }

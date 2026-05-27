@@ -267,10 +267,10 @@ export default defineNuxtComponent({
         if (this.deck.id) {
           this.checkImageAndAddId(formData);
           await db.decks.put(formData);
-          navigateTo(`/decks/${this.deck.id}`);
+          this.$router.back();
         } else {
           await db.decks.add(formData);
-          navigateTo("/decks");
+          this.$router.back();
         }
       } catch (e) {
         alert("a Deck with the same name already exists!");

@@ -4,9 +4,9 @@
       class="p-18-0 flex just-c-space-between align-i-center relative icon-color-white-two"
     >
       <div class="flex align-i-center gap-6">
-        <NuxtLink to="/decks" class="flex align-i-center">
-          <backIcon class="w-24 pointer" />
-        </NuxtLink>
+        <a @click="$router.back()" class="flex align-i-center pointer">
+          <backIcon class="w-24" />
+        </a>
         <h1 class="m-0 color-green-one" font="w-555">{{ deck.name }}</h1>
       </div>
       <Menu ref="menu">
@@ -100,7 +100,7 @@ export default defineNuxtComponent({
           .delete()
           .then(() => {
             db.decks.delete(this.deck!.id).then(() => {
-              navigateTo("/decks");
+              this.$router.back();
             });
           });
     },

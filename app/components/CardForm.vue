@@ -91,13 +91,13 @@ export default defineNuxtComponent({
 
     createCard(card: Card) {
       db.cards.add(card).then(() => {
-        navigateTo(`/decks/${this.deck!.id}`);
+        this.$router.back();
       });
     },
 
     updateCard(card: Card) {
       db.cards.put(card).then(() => {
-        navigateTo(`/decks/${this.deck!.id}`);
+        this.$router.back();
       });
     },
 

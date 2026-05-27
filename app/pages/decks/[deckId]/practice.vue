@@ -4,9 +4,9 @@
       class="p-18-0 flex just-c-space-between align-i-center icon-color-white-two"
     >
       <div class="flex align-i-center gap-6">
-        <NuxtLink :to="`/decks/${deck.id}`" class="flex align-i-center">
+        <a @click="$router.back()" class="flex align-i-center pointer">
           <backIcon class="w-24" />
-        </NuxtLink>
+        </a>
         <h1 class="m-0 color-green-one" font="w-555">
           {{ finishedPractice ? "Practiced Cards" : "Practice" }}
         </h1>
