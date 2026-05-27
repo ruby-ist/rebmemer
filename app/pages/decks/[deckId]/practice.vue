@@ -82,12 +82,7 @@
         />
       </GSAPTransition>
     </div>
-    <PracticedCardsList
-      v-else
-      class="mt-24 pb-64"
-      :cards="cardsCopy"
-      :deck="deck"
-    />
+    <PracticedCardsList v-else :cards="cardsCopy" :deck="deck" />
   </main>
 </template>
 
