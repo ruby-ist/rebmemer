@@ -9,15 +9,24 @@ export function reviewedAtAsString(date: number) {
 }
 
 export function fetchCardsToBePracticed(cards: Card[], deck: Deck) {
+  const cardsPerRound = Math.min(cards.length, deck.cardsPerRound);
+
   const [newCards, existingCards] = partitionCardsByFamilarity(cards, deck);
   const sortedExistingCards = sortCardsByUrgency(existingCards, deck);
-  var newCardsCount = numberOfNewCardsToBeIncluded(deck);
-  if (existingCards.length < deck.cardsPerRound - newCardsCount)
-    newCardsCount = deck.cardsPerRound - existingCards.length;
+
+  let newCardsCount = Math.floor(cardsPerRound * (deck.newCardsRatio / 100));
+  let existingCardsCount = cardsPerRound - newCardsCount;
+
+  if (existingCards.length < existingCardsCount) {
+    newCardsCount = cardsPerRound - existingCards.length;
+  }
+  if (newCards.length < newCardsCount) {
+    existingCardsCount = cardsPerRound - newCards.length;
+  }
 
   return shuffleArray([
     ...newCards.slice(0, newCardsCount),
-    ...sortedExistingCards.slice(0, deck.cardsPerRound - newCardsCount),
+    ...sortedExistingCards.slice(0, existingCardsCount),
   ]);
 }
 
@@ -34,10 +43,6 @@ function partitionCardsByFamilarity(
     },
     [[] as Card[], [] as Card[]],
   );
-}
-
-function numberOfNewCardsToBeIncluded(deck: Deck) {
-  return Math.floor(deck.cardsPerRound * (deck.newCardsRatio / 100));
 }
 
 function sortCardsByUrgency(cards: Card[], deck: Deck) {
