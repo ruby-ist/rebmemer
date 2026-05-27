@@ -153,10 +153,6 @@ export default defineNuxtComponent({
       this.isDrawing = false;
       if (this.currentStroke.length > 0) {
         this.strokes.push([this.currentStroke, this.strokeWidth]);
-        // enforce history limit
-        if (this.strokes.length > 10) {
-          this.strokes.shift();
-        }
       }
       this.currentStroke = [];
       this.ctx.closePath(); // optional
