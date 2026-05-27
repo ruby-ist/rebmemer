@@ -46,11 +46,11 @@
         </div>
       </div>
       <div class="flex gap-8 align-i-center">
-        <div class="color-white-three">Familarity:</div>
+        <div class="color-white-three">Familiarity:</div>
         <ProgressBar :progress="card.familarity" />
       </div>
       <div class="flex gap-8 align-i-center">
-        <div class="color-white-three">Reverse Familarity:</div>
+        <div class="color-white-three">Reverse Familiarity:</div>
         <ProgressBar :progress="card.reverseFamilarity" />
       </div>
       <div class="flex gap-8 align-i-center">

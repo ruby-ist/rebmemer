@@ -5,9 +5,7 @@
         <div font="w-450 s-1.2rem" class="color-white-two max-w-80p">
           {{ reversed ? card.answer : card.question }}
         </div>
-        <ProgressBar
-          :progress="reversed ? card.reverseFamilarity : card.familarity"
-        />
+        <ProgressBar :key="cardProgress" :progress="cardProgress" />
       </div>
       <div class="flex just-c-space-between align-i-end">
         <div class="color-white-one max-w-54p" font="s-1.2rem">
@@ -39,6 +37,11 @@ export default defineNuxtComponent({
     link: {
       type: Boolean,
       default: true,
+    },
+  },
+  computed: {
+    cardProgress() {
+      return this.reversed ? this.card.reverseFamilarity : this.card.familarity;
     },
   },
 });

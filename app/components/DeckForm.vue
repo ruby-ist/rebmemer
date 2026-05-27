@@ -129,7 +129,7 @@
         <div class="flex align-i-center just-c-space-between gap-10">
           <div class="flex align-i-center gap-4">
             <label for="correctAnswerLeap" class="color-white-two">
-              Familarity leap:
+              Familiarity leap:
             </label>
             <InfoTooltip
               content="Controls how quickly new words climb toward mastery when answered correctly. Higher percentages accelerate your progress so you see successful words less often. Lower percentages keep them in the short-term loop longer to ensure they stick."

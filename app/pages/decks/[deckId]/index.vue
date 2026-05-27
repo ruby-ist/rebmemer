@@ -115,7 +115,7 @@ export default defineNuxtComponent({
 
     exportCards() {
       const headers =
-        "Question|Answer|Familarity|Last Practiced|Reverse Familarity|Last Reverse Practiced";
+        "Question|Answer|Familiarity|Last Practiced|Reverse Familiarity|Last Reverse Practiced";
       const records = this.cards
         .map((card) =>
           [

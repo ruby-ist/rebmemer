@@ -32,7 +32,7 @@
         <option value="question">Question</option>
         <option value="answer">Answer</option>
         <option :value="deck.reversed ? 'reverseFamilarity' : 'familarity'">
-          Familarity
+          Familiarity
         </option>
         <option
           :value="deck.reversed ? 'lastReverseReviewedAt' : 'lastReviewedAt'"
