@@ -153,8 +153,11 @@ export default defineNuxtComponent({
     },
   },
   mounted() {
-    this.sortByKey = localStorage.getItem("sortByKey") || "createdAt";
-    this.sortByAsc = JSON.parse(localStorage.getItem("sortByAsc") || "true");
+    this.sortByKey =
+      localStorage.getItem(`sortByKey-${this.deck.id}`) || "createdAt";
+    this.sortByAsc = JSON.parse(
+      localStorage.getItem(`sortByAsc-${this.deck.id}`) || "true",
+    );
     document.body.addEventListener("scroll", this.scrollEvent);
     document.body.scrollTo({ top: 0, behavior: "auto" });
   },
@@ -181,10 +184,13 @@ export default defineNuxtComponent({
       }
     },
     sortByKey(newValue) {
-      localStorage.setItem("sortByKey", newValue);
+      localStorage.setItem(`sortByKey-${this.deck.id}`, newValue);
     },
     sortByAsc(newValue) {
-      localStorage.setItem("sortByAsc", newValue ? "true" : "false");
+      localStorage.setItem(
+        `sortByAsc-${this.deck.id}`,
+        newValue ? "true" : "false",
+      );
     },
   },
 });

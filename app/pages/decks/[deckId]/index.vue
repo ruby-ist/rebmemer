@@ -47,7 +47,8 @@
     </nav>
     <AboutDeck
       :deck="deck"
-      :cardCount="cards.length"
+      :practicedCardsCount="practicedCardsCount"
+      :totalCardsCount="cards.length"
       :lastPracticedAt="lastPracticedAt"
     />
     <NuxtLink
@@ -85,6 +86,14 @@ export default defineNuxtComponent({
         (a, b) => b.lastReviewedAt - a.lastReviewedAt,
       )[0];
       return lastPracticedCard ? lastPracticedCard.lastReviewedAt : 0;
+    },
+    practicedCardsCount() {
+      return this.cards.filter(
+        (card) =>
+          (this.deck.reversed
+            ? card.lastReverseReviewedAt
+            : card.lastReviewedAt) !== 0,
+      ).length;
     },
   },
   methods: {
