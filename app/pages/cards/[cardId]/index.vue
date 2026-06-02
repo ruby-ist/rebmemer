@@ -13,13 +13,19 @@
       </div>
       <Menu ref="menu">
         <NuxtLink
+          :to="`/cards/${card.id}/practice`"
+          class="flex align-i-center gap-14"
+        >
+          <practiceIcon class="w-18" />
+          <span class="color-green-two">Practice</span>
+        </NuxtLink>
+        <NuxtLink
           :to="`/cards/${card.id}/edit`"
           class="flex align-i-center gap-14"
         >
           <editIcon class="w-18" />
           <span class="color-green-two">Edit Card</span>
         </NuxtLink>
-
         <a class="flex align-i-center gap-14" @click="deleteCard">
           <trashIcon class="w-18" />
           <span class="color-green-two">Delete Card</span>
