@@ -1,11 +1,3 @@
 <template>
-  <div>Wait for redirection...</div>
+  <div>Rebmemer</div>
 </template>
-
-<script lang="ts">
-export default defineNuxtComponent({
-  created() {
-    navigateTo("/decks");
-  },
-});
-</script>

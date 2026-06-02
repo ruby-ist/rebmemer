@@ -23,7 +23,7 @@
             class="w-18"
             :style="`transform: rotateY(${deck.reversed ? 180 : 0}deg)`"
           />
-          <span class="color-green-two">Flip the cards</span>
+          <span class="color-green-two">Flip the Cards</span>
         </a>
 
         <NuxtLink
@@ -36,7 +36,7 @@
 
         <a class="flex align-i-center gap-14" @click="exportCards">
           <ExportIcon class="w-18" />
-          <span class="color-green-two">Export cards</span>
+          <span class="color-green-two">Export Cards</span>
         </a>
 
         <a class="flex align-i-center gap-14" @click="deleteDeck">
