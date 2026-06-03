@@ -15,7 +15,7 @@
           class="flex align-i-center gap-14"
         >
           <editIcon class="w-18" />
-          <span class="color-green-two">Edit Deck</span>
+          <span class="color-green-two">Edit deck</span>
         </NuxtLink>
 
         <a class="flex align-i-center gap-14" @click="flipCards">
@@ -23,7 +23,7 @@
             class="w-18"
             :style="`transform: rotateY(${deck.reversed ? 180 : 0}deg)`"
           />
-          <span class="color-green-two">Flip the Cards</span>
+          <span class="color-green-two">Flip the cards</span>
         </a>
 
         <NuxtLink
@@ -31,17 +31,17 @@
           class="flex align-i-center gap-14"
         >
           <uploadIcon class="w-18" />
-          <span class="color-green-two">Import Cards</span>
+          <span class="color-green-two">Import cards</span>
         </NuxtLink>
 
         <a class="flex align-i-center gap-14" @click="exportCards">
           <ExportIcon class="w-18" />
-          <span class="color-green-two">Export Cards</span>
+          <span class="color-green-two">Export cards</span>
         </a>
 
         <a class="flex align-i-center gap-14" @click="deleteDeck">
           <trashIcon class="w-18" />
-          <span class="color-green-two">Delete Deck </span>
+          <span class="color-green-two">Delete deck</span>
         </a>
       </Menu>
     </nav>
