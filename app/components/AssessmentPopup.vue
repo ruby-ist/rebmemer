@@ -36,7 +36,7 @@
       </div>
       <div class="flex align-i-center column gap-8">
         <button
-          @click="addPenaltyToCard(deck.wrongAnswerPenalty)"
+          @click="addPenaltyToCard(100 - deck.wrongAnswerPenalty)"
           class="bg-color-green-two p-12 pointer active:bg-color-green-one active:scale-96"
           border="1 solid color-indigo-one rad-10"
         >
@@ -46,7 +46,7 @@
       </div>
       <div class="flex align-i-center column gap-8">
         <button
-          @click="addPenaltyToCard(deck.partialAnswerPenalty)"
+          @click="addPenaltyToCard(100 - deck.partialAnswerPenalty)"
           class="bg-color-green-two p-17-15 pointer active:bg-color-green-one active:scale-96"
           border="1 solid color-indigo-one rad-10"
         >
