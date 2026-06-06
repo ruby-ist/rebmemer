@@ -2,7 +2,7 @@
   <main>
     <div class="bg-color-indigo-one">
       <div
-        class="grid p-20 lg:p-60-5dvw grid-columns-45%-55% grid-rows-auto lg:grid-rows-2fr-3fr grid-areas-:logo-header:-:description-description:- lg:grid-areas-:logo-header:-:logo-description:-"
+        class="grid p-28-20-20 lg:p-60-5dvw grid-columns-45%-55% grid-rows-auto lg:grid-rows-2fr-3fr grid-areas-:logo-header:-:description-description:- lg:grid-areas-:logo-header:-:logo-description:-"
       >
         <div class="grid-area-logo just-s-start lg:place-s-center">
           <img
