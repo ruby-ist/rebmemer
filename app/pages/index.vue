@@ -20,8 +20,9 @@
             class="bg-color-green-one color-indigo-one p-12-16 lg:p-14-20 pointer active:bg-color-green-two active:scale-96"
             font="f-default-font w-500 s-1rem lg:s-1.25rem"
             border="none rad-5"
+            @click="handleButtonClick"
           >
-            Install App
+            {{ buttonText }}
           </button>
         </div>
         <div class="grid-area-description">
@@ -59,13 +60,20 @@
     <footer class="bg-color-indigo-one flex just-c-center align-i-center p-32">
       <i>
         Desgined and Developed by
-        <a class="color-green-one" href="https://srira.me">Srira</a>
+        <a class="color-green-one" target="_blank" href="https://srira.me">
+          Srira
+        </a>
       </i>
     </footer>
   </main>
 </template>
 
 <script lang="ts">
+interface BeforeInstallPromptEvent extends Event {
+  readonly userChoice: Promise<{ outcome: "accepted" | "dismissed" }>;
+  prompt(): Promise<void>;
+}
+
 export default defineNuxtComponent({
   setup() {
     useHead({
@@ -73,6 +81,66 @@ export default defineNuxtComponent({
         class: "p-0",
       },
     });
+  },
+
+  data: () => ({
+    isInstalling: false,
+    deferredPrompt: null as null | BeforeInstallPromptEvent,
+    pwaStartUrl: window.location.origin + "/decks",
+  }),
+  computed: {
+    buttonText() {
+      return this.deferredPrompt || this.isInstalling
+        ? "Install App"
+        : "Open App";
+    },
+  },
+  async mounted() {
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      this.deferredPrompt = e as BeforeInstallPromptEvent;
+    });
+
+    window.addEventListener("appinstalled", () => {
+      this.deferredPrompt = null;
+    });
+  },
+  methods: {
+    async handleButtonClick() {
+      if (this.isInstalling) return;
+
+      if (this.deferredPrompt) await this.installPWA();
+      else await this.launchPWA();
+    },
+
+    async installPWA() {
+      // Show the install prompt
+      this.deferredPrompt!.prompt();
+
+      try {
+        const { outcome } = await this.deferredPrompt!.userChoice;
+        if (outcome === "accepted") {
+          this.isInstalling = true;
+          setTimeout(() => {
+            this.isInstalling = false;
+          }, 8000);
+        }
+      } catch (error) {
+        console.error("Error installing PWA:", error);
+      }
+    },
+
+    async launchPWA() {
+      try {
+        const registration = await navigator.serviceWorker.getRegistration();
+        if (registration) {
+          window.open(this.pwaStartUrl, "_blank");
+          return;
+        }
+      } catch (error) {
+        console.error("Error launching PWA:", error);
+      }
+    },
   },
 });
 </script>
