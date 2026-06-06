@@ -10,6 +10,7 @@ export default [
   [/^align-s-([a-z-]+)$/, ([, alignment]) => ({ "align-self": alignment })],
   [/^just-i-([a-z-]+)$/, ([, alignment]) => ({ "justify-items": alignment })],
   [/^just-c-([a-z-]+)$/, ([, alignment]) => ({ "justify-content": alignment })],
+  [/^just-s-([a-z-]+)$/, ([, alignment]) => ({ "justify-self": alignment })],
   [/^(row|column)$/, ([, direction]) => ({ "flex-direction": direction })],
   [/^(wrap|nowrap)$/, ([, wrap]) => ({ "flex-wrap": wrap })],
   [
@@ -29,6 +30,7 @@ export default [
   // grid rules
   ["grid", { display: "grid" }],
   [/^place-i-([a-z-]+)$/, ([, alignment]) => ({ "place-items": alignment })],
+  [/^place-s-([a-z-]+)$/, ([, alignment]) => ({ "place-self": alignment })],
   [
     /^grid-auto-(rows|columns)-(\d+)(\w{1,3})?$/,
     ([, axis, value, unit]) => ({
@@ -42,11 +44,14 @@ export default [
     }),
   ],
   [
-    /^grid-(rows|columns)-(.+)$/,
+    /^grid-(rows|columns|areas)-(.+)$/,
     ([, axis, value]) => ({
-      [`grid-template-${axis}`]: value.replaceAll("-", " "),
+      [`grid-template-${axis}`]: value
+        .replaceAll("-", " ")
+        .replaceAll(":", "'"),
     }),
   ],
+  [/^grid-area-([a-z-]+)$/, ([, areaName]) => ({ "grid-area": areaName })],
 
   // display rules
   ["inline-block", { display: "inline-block" }],
