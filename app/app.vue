@@ -10,5 +10,6 @@
     <Link rel="apple-touch-icon" href="apple-touch-icon.png" />
     <Link rel="mask-icon" href="maskable-icon.png" />
   </Head>
+  <NuxtPwaAssets />
   <NuxtPage />
 </template>
