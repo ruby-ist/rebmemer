@@ -9,32 +9,54 @@
   Rebmemer is a mobile-first Progressive Web App designed for spaced repetition practice with a sleek, modern UI. Create question-and-answer flashcards, organize them into decks, and customize how cards are picked for each practice session. Flip the flow with reverse practice mode to review cards from answer to question. Easily import and export your card data via CSV. Simple, flexible, and designed to make spaced repetition a seamless part of your routine — right from your mobile device.
 </p>
 
-### Learning Configuration:
+---
 
-#### Cards Per Practice:
-Number of cards to draw per practice can be configured deck-wise.
+### Learning Configuration
 
-#### New cards Ratio:
-Maximum percentage of new cards (cards with zero familiarity) can be drawn per practice. If number of new cards are less than this ratio, familiar cards will be drawn to accomodate the number of cards per session. If number of familiar cards is less than the intended amount, new cards will be drawn to accomodate. This configuration is for the scenario when number of both new cards and familiar cards are exceeding the number of respective cards requried for a practice session.
+#### Cards Per Practice
+The number of cards drawn per practice session can be configured for each deck.
 
-#### Review Interviewed Scaling:
+#### New Card Ratio
+The maximum percentage of new cards (cards with zero familiarity) that can be included in a practice session.
+If the number of available new cards is less than the configured ratio, familiar cards will be used to fill the remaining slots. Likewise, if there are not enough familiar cards available, additional new cards will be included.
+This setting only affects sessions where both new and familiar cards exceed their respective required counts.
 
-Cards are drawn for the practice based on the following urgrency formula:
-
+#### Review Interval Scaling
+Cards are selected for practice based on the following urgency formula:
 <p align="center">
-  <img src="https://latex.codecogs.com/svg.image?\color{white}\Large%20\text{Urgency}=\frac{\text{Current\%20Time}-\text{Last\%20Practiced\%20Time}}{(\text{Review\%20Interval\%20Scaling})^{\text{Familiarity}}}"/>
+  <img src="https://latex.codecogs.com/svg.image?\color{white}\Large\text{Urgency}=\frac{\text{Current\ Time}-\text{Last\ Practiced\ Time}}{(\text{Review\ Interval\ Scaling})^{\text{Familiarity}}}"/>
 </p>
 
-Where, **Review Interviewed Scaling** can be adjusted based on your prefernce, if it has lower value, cards with high familiarity will appear more frequent, higher values means cards with high familiarity appear less frequent.
+A higher **Review Interval Scaling** value causes highly familiar cards to appear less frequently, while a lower value makes them appear more often.
 
+#### Familiarity Leap
+Determines how much familiarity increases after a correct answer.
+```text
+Familiarity += (Max Familiarity - Current Familiarity) × Familiarity Leap / 100
+```
 
-#### Familarity Leap:
+This formula is designed so that familiarity grows rapidly at first and then gradually slows as it approaches the maximum familiarity value.
 
-How much familiarity can be increased by correct answer.
+#### Wrong Answer Penalty
 
-Familarity += (Max Familiarity - Current Familiarity) * Familarity Leap
+Penalty applied when a card is answered incorrectly.
 
+```text
+Familiarity *= (100 - Wrong Answer Penalty) / 100
+```
 
+Higher penalty values result in a larger reduction in familiarity.
+
+#### Partial Answer Penalty
+
+Penalty applied when a card is marked as partially correct.
+
+```text
+Familiarity *= (100 - Partial Answer Penalty) / 100
+```
+This penalty is typically less severe than the wrong answer penalty.
+
+---
 
 ### Screenshots:
 
