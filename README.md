@@ -1,75 +1,31 @@
-# Nuxt Minimal Starter
+# Rebmemer
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+<p align="center">
+ <img src="https://raw.githubusercontent.com/ruby-ist/Rebmemer/refs/heads/main/public/logo-square.png"
+      alt="logo" width="200" height="200">
+</p>
 
-## Setup
+<p>
+  Rebmemer is a mobile-first Progressive Web App designed for spaced repetition practice with a sleek, modern UI. Create question-and-answer flashcards, organize them into decks, and customize how cards are picked for each practice session. Flip the flow with reverse practice mode to review cards from answer to question. Easily import and export your card data via CSV. Simple, flexible, and designed to make spaced repetition a seamless part of your routine — right from your mobile device.
+</p>
 
-Make sure to install dependencies:
+### Screenshots:
 
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+<img src="https://raw.githubusercontent.com/ruby-ist/Rebmemer/refs/heads/main/public/showcase/img_1.webp"
+     alt="Decks Index" width="120">
+<img src="https://raw.githubusercontent.com/ruby-ist/Rebmemer/refs/heads/main/public/showcase/img_2.webp"
+     alt="Deck" width="120">
+<img src="https://raw.githubusercontent.com/ruby-ist/Rebmemer/refs/heads/main/public/showcase/img_3.webp"
+     alt="Search functionality" width="120">
+<img src="https://raw.githubusercontent.com/ruby-ist/Rebmemer/refs/heads/main/public/showcase/img_4.webp"
+     alt="Menu" width="120">
+<img src="https://raw.githubusercontent.com/ruby-ist/Rebmemer/refs/heads/main/public/showcase/img_5.webp"
+     alt="Deck Creation" width="120">
+<img src="https://raw.githubusercontent.com/ruby-ist/Rebmemer/refs/heads/main/public/showcase/img_6.webp"
+     alt="Card Creation" width="120">
+<img src="https://raw.githubusercontent.com/ruby-ist/Rebmemer/refs/heads/main/public/showcase/img_7.webp"
+     alt="Card Practice - Text input" width="120">
+<img src="https://raw.githubusercontent.com/ruby-ist/Rebmemer/refs/heads/main/public/showcase/img_8.webp"
+     alt="Card Practice - Canva input" width="120">
+<img src="https://raw.githubusercontent.com/ruby-ist/Rebmemer/refs/heads/main/public/showcase/img_9.webp"
+     alt="After practice page" width="120">
