@@ -11,14 +11,30 @@
 
 ### Learning Configuration:
 
+#### Cards Per Practice:
+Number of cards to draw per practice can be configured deck-wise.
+
+#### New cards Ratio:
+Maximum percentage of new cards (cards with zero familiarity) can be drawn per practice. If number of new cards are less than this ratio, familiar cards will be drawn to accomodate the number of cards per session. If number of familiar cards is less than the intended amount, new cards will be drawn to accomodate. This configuration is for the scenario when number of both new cards and familiar cards are exceeding the number of respective cards requried for a practice session.
+
+#### Review Interviewed Scaling:
+
 Cards are drawn for the practice based on the following urgrency formula:
 
-$$
-\text{Urgency}
-=
-\frac{\text{Current Time} - \text{Last Practice Time}}
-{\left(\text{Review Interval Scaling}\right)^{\text{Familiarity}}}
-$$
+<p align="center">
+  <img src="https://latex.codecogs.com/svg.image?\color{white}\Large%20\text{Urgency}=\frac{\text{Current\%20Time}-\text{Last\%20Practiced\%20Time}}{(\text{Review\%20Interval\%20Scaling})^{\text{Familiarity}}}"/>
+</p>
+
+Where, **Review Interviewed Scaling** can be adjusted based on your prefernce, if it has lower value, cards with high familiarity will appear more frequent, higher values means cards with high familiarity appear less frequent.
+
+
+#### Familarity Leap:
+
+How much familiarity can be increased by correct answer.
+
+Familarity += (Max Familiarity - Current Familiarity) * Familarity Leap
+
+
 
 ### Screenshots:
 
