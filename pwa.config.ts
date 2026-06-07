@@ -11,7 +11,7 @@ const config: Partial<ModuleOptions> = {
     start_url: "/decks",
     description: "Mobile first offline Spacial Repitation System as PWA",
     theme_color: "#232b5f",
-    background_color: "#156394",
+    background_color: "#232b5f",
     icons: [
       {
         src: "pwa-64x64.png",
