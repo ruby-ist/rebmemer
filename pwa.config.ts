@@ -6,8 +6,8 @@ const config: Partial<ModuleOptions> = {
     globPatterns: ["**/*.{js,css,html,svg,ttf}"],
   },
   manifest: {
-    name: "Rebememer",
-    short_name: "Rebememer",
+    name: "Rebmemer",
+    short_name: "Rebmemer",
     start_url: "/decks",
     description: "Mobile first offline Spaced Repetition System as PWA",
     theme_color: "#232b5f",
