@@ -48,6 +48,9 @@ export default defineNuxtComponent({
     answer: "",
     showNewLineButton: false,
   }),
+  mounted() {
+    (this.$refs.answerInput as HTMLDivElement).focus();
+  },
   methods: {
     addNewLine() {
       const sel = window.getSelection()!;
