@@ -35,11 +35,15 @@
     <div class="flex column gap-14">
       <div class="flex column gap-8 mb-12">
         <div class="color-white-three">Question:</div>
-        <div class="color-green-one" font="s-1.25rem">{{ card.question }}</div>
+        <div class="color-green-one" font="s-1.25rem">
+          <CopiableContent :content="card.question" />
+        </div>
       </div>
       <div class="flex column gap-8 mb-14">
         <div class="color-white-three">Answer:</div>
-        <div class="color-green-one" font="s-1.25rem">{{ card.answer }}</div>
+        <div class="color-green-one" font="s-1.25rem">
+          <CopiableContent :content="card.answer" />
+        </div>
       </div>
       <div class="flex gap-8 align-i-center">
         <div class="color-white-three">Deck:</div>

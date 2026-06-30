@@ -9,7 +9,11 @@
       </div>
       <div class="flex just-c-space-between align-i-end">
         <div class="color-white-one max-w-54p" font="s-1.2rem">
-          {{ reversed ? card.question : card.answer }}
+          <span v-if="link">{{ reversed ? card.question : card.answer }}</span>
+          <CopiableContent
+            v-else
+            :content="reversed ? card.question : card.answer"
+          />
         </div>
         <div class="color-white-two" font="w-400 s-0.8rem">
           {{

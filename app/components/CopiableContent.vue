@@ -3,7 +3,7 @@
     @click="copyToClipBoard"
     role="button"
     tabindex="0"
-    aria-label="Copy code to clipboard"
+    aria-label="Copy to clipboard"
   >
     {{ content }}
   </span>
